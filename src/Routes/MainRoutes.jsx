@@ -5,5 +5,11 @@ import MainLayout from "../Layout/MainLayout";
     {
         path: "/",
         element: <MainLayout></MainLayout>,
+         children: [
+          {
+            path: "/contact",
+            element: <Contact></Contact>
+          },
+        ]
     }
 ])
