@@ -16,7 +16,8 @@ function NavBar() {
                 <div className="flex-none">
                     <ul className="menu menu-horizontal px-1">
                     <li><a href='/'>Home</a></li>  
-                    <li><a>Services</a></li>
+                    <li><a href='/services'>Services</a></li>
+                    <li><a>Products</a></li>
                     <li><a href='/about'>About</a></li>
                     <li><a href='/contact'>Contact</a></li>
                     </ul>
