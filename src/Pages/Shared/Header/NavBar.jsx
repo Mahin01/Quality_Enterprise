@@ -17,7 +17,7 @@ const NavBar = () => {
         <>
             {/* - bg-base-100: Change this to the navbar's background color from the old theme (e.g., 'bg-neutral' for a dark theme).
             */}
-            <div className="navbar bg-gray-900 shadow-2xl fixed w-full top-0 border-b border-amber-500/40mx-auto text-amber-400">
+            <div className="navbar bg-gray-900 shadow-2xl w-full top-0 border-b border-amber-500/40mx-auto text-amber-400">
                 <div className="navbar-start">
                     {/* Hamburger Menu for Small Screens */}
                     <div className="dropdown lg:hidden">
@@ -42,7 +42,7 @@ const NavBar = () => {
                     </div>
 
                 {/* Brand Logo - No change needed here for color theme relevance other than surrounding text color */}
-                    <a href="/"><img className='w-12 h-12 px-2' src="logo.jpg" alt="Brand Logo" /></a> 
+                    <a href="/"><img className='w-12 h-12 px-2' src="logo.png" alt="Brand Logo" /></a> 
                     {/* - text-xl font-bold uppercase: Add text color if the navbar background is not 'base-100' and text visibility is an issue.
                         - Example: '<span className="text-xl font-bold uppercase text-white">' for a dark background.
                     */}

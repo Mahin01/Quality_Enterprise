@@ -57,7 +57,7 @@ const Services = () => {
     ];
 
     return (
-        <section className="py-16 bg-gray-900 rounded-xl shadow-2xl p-6 md:p-10 max-w-7xl mx-auto">
+        <section className="bg-gray-900 shadow-2xl p-6 md:p-10 mx-auto">
             {/* Header Section (Updated for strategic tone) */}
             <div className="text-center mb-16 space-y-4">
                 <h1 className="text-4xl md:text-5xl font-extrabold text-white">

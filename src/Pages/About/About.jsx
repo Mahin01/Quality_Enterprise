@@ -11,7 +11,7 @@ const About = () => {
     );
 
     return (
-        <section className="py-16 bg-gray-900 rounded-xl shadow-2xl p-6 md:p-10">
+        <section className="py-16 bg-gray-900 shadow-2xl p-6 md:p-10">
             <div className="max-w-7xl mx-auto">
                 {/* Header and Core Narrative */}
                 <div className="text-center mb-16">
