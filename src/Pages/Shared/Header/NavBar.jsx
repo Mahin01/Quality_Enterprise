@@ -63,21 +63,8 @@ const NavBar = () => {
                 </div>
 
                 <div className="navbar-end gap-4">
-                    <div className="form-control">
-                        <div className="relative">
-                            {/* - input input-bordered: Change the 'input' class (which controls color) to be theme-relevant.
-                                - text-sm: Change the text color if needed (e.g., 'text-white' for dark theme).
-                            */}
-                            <input type="search" name="q" className="input input-bordered text-sm rounded w-24 md:w-auto h-8 outline-none focus:outline-none" placeholder="Search..." autoComplete="off" />
-                            <span className="absolute inset-y-0 right-0 flex items-center pr-2">
-                                {/* - button type="submit": Add a color class to the button/icon if it doesn't stand out (e.g., 'text-gray-300').
-                                */}
-                                <button type="submit" className="p-1">
-                                <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="w-4 h-4"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                                </button>
-                            </span>
-                        </div>           
-                    </div>
+                    <a href="#quote" className="px-6 py-2 text-sm font-bold text-gray-900 bg-orange-400 rounded-lg shadow-md hover:bg-orange-500 transform hover:scale-105 transition duration-300"> Get A Quote
+                    </a>
                 </div>
             </div>
         </>
