@@ -159,7 +159,7 @@ const ProductsSection = () => (
 
 
 // Main App Component
-export default function App() {
+export default function Home() {
   return (
     <div className="min-h-screen bg-gray-900 font-sans">
       <main>
