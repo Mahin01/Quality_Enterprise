@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Mock Data based on the uploaded images (IMG_0028 to IMG_0034)
 const servicesData = [
@@ -149,13 +149,161 @@ const ProductsSection = () => (
       </div>
       
       <div className="text-center mt-12">
-        <a href="#product-details" className="inline-block px-8 py-3 text-lg font-semibold text-gray-900 bg-white rounded-lg hover:bg-gray-200 transition duration-300">
+        <a href="/products" className="inline-block px-8 py-3 text-lg font-semibold text-gray-900 bg-white rounded-lg hover:bg-gray-200 transition duration-300">
           View Detailed Portfolio
         </a>
       </div>
     </div>
   </section>
 );
+
+
+// Quote Request Form Component
+const QuoteRequestForm = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    service: '',
+    quantity: '',
+    description: '',
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+
+    // --- Mock Submission Logic ---
+    // In a real application, you would send formData to a backend API (e.g., using fetch or axios)
+    // and handle success/error responses here.
+    
+    console.log('Quote Request Submitted:', formData);
+    
+    // Simulate API delay
+    setTimeout(() => {
+      setMessage('Thank you! Your quote request has been submitted. We will contact you shortly.');
+      // Reset form or redirect after successful submission
+      // setFormData({ name: '', email: '', service: '', quantity: '', description: '' }); 
+    }, 1500);
+    // --- End Mock Submission Logic ---
+  };
+
+  if (isSubmitted && message) {
+    return (
+      <section id="quote" className="py-20 bg-gray-900">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-gray-800 p-10 rounded-xl shadow-2xl">
+          <h2 className="text-3xl font-extrabold text-orange-400 mb-4">Success!</h2>
+          <p className="text-xl text-white">{message}</p>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section id="quote" className="py-20 bg-gray-900">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div className="text-center mb-10">
+          <h2 className="text-4xl font-extrabold text-white mb-4">Get a Quote</h2>
+          <p className="text-xl text-gray-400">Tell us about your project or component needs.</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="bg-gray-800 p-8 sm:p-12 rounded-xl shadow-2xl space-y-6">
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300"
+                placeholder="John Doe"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Work Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300"
+                placeholder="john.doe@company.com"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-2">Product/Service of Interest</label>
+              <select
+                id="service"
+                name="service"
+                value={formData.service}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-orange-500 focus:border-orange-500 transition duration-300 appearance-none"
+              >
+                <option value="" disabled>Select a category</option>
+                <option value="Industrial Equipment Supply">Industrial Equipment Supply</option>
+                <option value="Engineering Solutions">Engineering Solutions</option>
+                <option value="Maintenance & Fabrication">Maintenance & Fabrication</option>
+                <option value="Calibration & Compliance">Calibration & Compliance</option>
+                <option value="Valves & Flow Control">Valves & Flow Control</option>
+                <option value="Sealing Solutions">Sealing Solutions</option>
+                <option value="Custom Project">Custom Project / Other</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="quantity" className="block text-sm font-medium text-gray-300 mb-2">Quantity or Size (e.g., 100 units, 4" Gasket)</label>
+              <input
+                type="text"
+                id="quantity"
+                name="quantity"
+                value={formData.quantity}
+                onChange={handleChange}
+                className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300"
+                placeholder="Required Qty/Size"
+              />
+            </div>
+          </div>
+          
+          <div>
+            <label htmlFor="description" className="block text-sm font-medium text-gray-300 mb-2">Project Description / Detailed Requirements</label>
+            <textarea
+              id="description"
+              name="description"
+              rows="4"
+              value={formData.description}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300"
+              placeholder="Describe the application, material requirements, or specific challenges..."
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full px-6 py-3 text-lg font-bold text-gray-900 bg-orange-400 rounded-xl shadow-lg hover:bg-orange-500 transform hover:scale-[1.01] transition duration-300"
+          >
+            Submit Quote Request
+          </button>
+        </form>
+      </div>
+    </section>
+  );
+};
 
 
 // Main App Component
@@ -166,6 +314,7 @@ export default function Home() {
         <Hero />
         <ServicesSection />
         <ProductsSection />
+        <QuoteRequestForm /> 
       </main>
     </div>
   );
