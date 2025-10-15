@@ -42,11 +42,10 @@ const NavBar = () => {
                     </div>
 
                 {/* Brand Logo - No change needed here for color theme relevance other than surrounding text color */}
-                    <a href="/"><img className='w-12 h-12 px-2' src="logo.png" alt="Brand Logo" /></a> 
+                    <a href="/"><img className='w-32 h-24' src="logo.png" alt="Brand Logo" /></a> 
                     {/* - text-xl font-bold uppercase: Add text color if the navbar background is not 'base-100' and text visibility is an issue.
                         - Example: '<span className="text-xl font-bold uppercase text-white">' for a dark background.
                     */}
-                    <span className="text-xl font-bold uppercase">Quality Enterprise</span>
                 </div>
 
                 {/* Navbar Links for Larger Screens */}

@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
 
+// Define the core color palette based on the pictures
+const PRIMARY_TEAL = '#1A364F'; // Primary Block/Accent Color (Dark Blue/Teal from images)
+const DARK_NAVY = '#0F2133'; // New darkest background color (Replaces gray-950)
+const PAGE_BG_COLOR = `bg-[${DARK_NAVY}]`;
+
+// Custom Colors for Form Elements to avoid Gray
+const INPUT_BG_COLOR = '#152A3F';
+const INPUT_BORDER_COLOR = '#367999';
+
 // Mock Data based on the uploaded images (IMG_0028 to IMG_0034)
 const servicesData = [
   {
@@ -39,7 +48,7 @@ const servicesData = [
     details: [
       "ISO/IEC 17025 accredited calibration laboratory (NABL & BAB)",
       "On-site & in-lab calibration for industrial instruments",
-      "Expertise in pharmaceuticals, FMCG, oil & gas, textiles, power, and healthcare sectors"
+      "Expertise in pharmaceuticals, FMCG, oil & gas, textiles, textiles, power, and healthcare sectors"
     ],
     image: "https://placehold.co/400x300/F4A261/ffffff?text=Compliance+Services"
   },
@@ -52,21 +61,22 @@ const productCategories = [
   { name: "Plastic & Rubber Materials", description: "Molded rubber, plastic pucks, and conveyor chain links for smooth conveying." },
 ];
 
+// Mock partner data updated to use custom rendering for the first two items, 
+// and a failing image URL (transparent GIF) for the rest to trigger the initials fallback.
 const partnersData = [
-    { name: "Unilever", imageUrl: "Unilever-Logo.jpg" }, // Mock image, but now using image style
-    { name: "BCIC", imageUrl: "Seal_of_Bangladesh_Chemical_Industries_Corporation_(BCIC).svg.png" },
-    { name: "KAFCO", imageUrl: "kafco-logo-png_seeklogo-518553.png" },
-    { name: "Habib Group", imageUrl: "1631338803496.jfif" },
-    { name: "Salehsteel", imageUrl: "Saleh.png" },
-    { name: "ASTECH", imageUrl: "1742279306742.jfif" },
+    { name: "Unilever", type: "custom-svg" }, 
+    { name: "BCIC", type: "custom-svg" },
+    { name: "KAFCO", imageUrl: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" },
+    { name: "Habib Group", imageUrl: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" },
+    { name: "Salehsteel", imageUrl: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" },
+    { name: "ASTECH", imageUrl: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" },
 ];
 
 
-// --- Sub-Components ---
-
-// Hero Section Component
+// Hero Section Component (Using Deep Teal/Blue Accent)
 const Hero = () => (
-  <section className="bg-gray-800 text-white pt-16 pb-24 rounded-b-3xl shadow-2xl">
+  // Increased top padding to push content below the fixed Navbar
+  <section className={`bg-[${PRIMARY_TEAL}] text-white pt-32 pb-24 rounded-b-3xl shadow-2xl`}> 
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center">
         <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 leading-tight">
@@ -75,22 +85,24 @@ const Hero = () => (
         <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
           We provide tailored engineering solutions that solve real-world problems in industrial settings, ensuring quality and reliability for continuous operations.
         </p>
-        <a href="#services" className="inline-block px-10 py-4 text-lg font-bold text-gray-900 bg-orange-400 rounded-xl shadow-2xl hover:bg-orange-500 transform hover:scale-105 transition duration-300">
-          Explore Our Solutions
+        <a href="#quote" className="inline-block px-10 py-4 text-lg font-bold text-gray-900 bg-orange-400 rounded-xl shadow-2xl hover:bg-orange-500 transform hover:scale-105 transition duration-300">
+          Request a Quote Today
         </a>
       </div>
     </div>
   </section>
 );
 
-// Service Block Component (Alternating Layout)
+// Service Block Component (Alternating Layout and Color)
 const ServiceBlock = ({ data, index }) => {
   const isReverse = index % 2 !== 0; // Alternate the text/image layout
-  const isAccentBg = index % 2 === 0; // Alternate the background color
 
-  const textBg = isAccentBg ? 'bg-orange-600' : 'bg-gray-900';
-  const textColor = isAccentBg ? 'text-white' : 'text-gray-100';
-  const titleColor = isAccentBg ? 'text-gray-900' : 'text-orange-400';
+  // Alternate between Orange (for even index) and Deep Teal/Blue (for odd index)
+  const isOrangeBg = index % 2 === 0; 
+  const textBg = isOrangeBg ? 'bg-orange-600' : `bg-[${PRIMARY_TEAL}]`;
+  const textColor = 'text-white';
+  const titleColor = isOrangeBg ? 'text-gray-900' : 'text-orange-400';
+  const bulletColor = isOrangeBg ? 'text-gray-900' : 'text-orange-500';
 
   return (
     <div className={`flex flex-col ${isReverse ? 'md:flex-row-reverse' : 'md:flex-row'} min-h-[400px] shadow-2xl rounded-xl overflow-hidden my-8`}>
@@ -113,7 +125,7 @@ const ServiceBlock = ({ data, index }) => {
         <ul className="list-none space-y-3">
           {data.details.map((detail, i) => (
             <li key={i} className="flex items-start">
-              <span className={`text-xl font-extrabold mr-3 ${isAccentBg ? 'text-gray-900' : 'text-orange-500'}`}>&bull;</span>
+              <span className={`text-xl font-extrabold mr-3 ${bulletColor}`}>&bull;</span>
               <p className="text-lg leading-relaxed">{detail}</p>
             </li>
           ))}
@@ -125,9 +137,9 @@ const ServiceBlock = ({ data, index }) => {
 
 // Services Section Container
 const ServicesSection = () => (
-  <section id="services" className="py-16 bg-gray-900">
+  <section id="services" className={`py-16 ${PAGE_BG_COLOR}`}>
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="text-4xl font-extrabold text-center mb-4 text-white">Our Services</h2>
+      <h2 className="text-4xl font-extrabold text-center mb-4 text-orange-400">Our Services</h2>
       <p className="text-center text-xl text-gray-400 mb-12">What We Offer</p>
       {servicesData.map((service, index) => (
         <ServiceBlock key={index} data={service} index={index} />
@@ -138,17 +150,17 @@ const ServicesSection = () => (
 
 // Product Card Component
 const ProductCard = ({ name, description }) => (
-  <div className="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-orange-500/50 transition duration-300 border-t-4 border-orange-600 transform hover:-translate-y-1">
+  <div className={`bg-[${PRIMARY_TEAL}] p-8 rounded-xl shadow-xl hover:shadow-orange-500/50 transition duration-300 border-t-4 border-orange-600 transform hover:-translate-y-1`}>
     <h4 className="text-2xl font-bold text-orange-400 mb-3">{name}</h4>
     <p className="text-gray-300">{description}</p>
   </div>
 );
 
-// Product Categories Section Container
+// Product Categories Section Container (Using Deep Teal/Blue Accent)
 const ProductsSection = () => (
-  <section id="products" className="py-20 bg-gray-700">
+  <section id="products" className={`py-20 bg-[${PRIMARY_TEAL}]`}>
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="text-4xl font-extrabold text-center mb-4 text-white">Product Categories</h2>
+      <h2 className="text-4xl font-extrabold text-center mb-4 text-orange-400">Product Categories</h2>
       <p className="text-center text-xl text-gray-300 mb-12">Essential Components for Continuous Operations</p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -158,8 +170,8 @@ const ProductsSection = () => (
       </div>
       
       <div className="text-center mt-12">
-        <a href="/products" className="inline-block px-8 py-3 text-lg font-semibold text-gray-900 bg-white rounded-lg hover:bg-gray-200 transition duration-300">
-          View Detailed Portfolio
+        <a href="#quote" className="inline-block px-8 py-3 text-lg font-semibold text-gray-900 bg-white rounded-lg hover:bg-gray-200 transition duration-300">
+          Request A Custom Quote
         </a>
       </div>
     </div>
@@ -221,9 +233,9 @@ const ClientSection = () => {
     };
 
     return (
-        <section id="clients" className="py-20 bg-gray-800">
+        <section id="clients" className={`py-20 ${PAGE_BG_COLOR}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 className="text-4xl font-extrabold text-white mb-2">Client List</h2>
+                <h2 className="text-4xl font-extrabold text-orange-400 mb-2">Client List</h2>
                 <p className="text-xl text-orange-400 mb-10">Trusted by Leading Industries</p>
 
                 {/* Industries Served List */}
@@ -240,7 +252,7 @@ const ClientSection = () => {
                     </div>
                 </div>
 
-                <h3 className="text-3xl font-extrabold text-white mb-8 border-b-2 border-orange-500 inline-block pb-1">Our Partners</h3>
+                <h3 className="text-3xl font-extrabold text-orange-400 mb-8 border-b-2 border-orange-500 inline-block pb-1">Our Partners</h3>
                 
                 {/* Partner Logos (Now in rounded square containers) */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-center">
@@ -248,7 +260,6 @@ const ClientSection = () => {
                         <div 
                             key={partner.name} 
                             title={partner.name}
-                            // Removed clipPath, switched to w-28 h-28 and rounded-xl
                             className={`w-28 h-28 mx-auto flex items-center justify-center rounded-xl transition duration-300 shadow-xl border-4 border-orange-400 transform hover:scale-105 overflow-hidden ${partner.type !== 'custom-svg' ? 'bg-orange-600' : 'bg-white'}`}
                         >
                             {renderPartnerContent(partner)}
@@ -260,7 +271,8 @@ const ClientSection = () => {
     );
 };
 
-// Quote Request Form Component
+
+// Quote Request Form Component (Using Deep Teal/Blue Accent)
 const QuoteRequestForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -281,24 +293,20 @@ const QuoteRequestForm = () => {
     setIsSubmitted(true);
 
     // --- Mock Submission Logic ---
-    // In a real application, you would send formData to a backend API (e.g., using fetch or axios)
-    // and handle success/error responses here.
-    
+    // In a real application, you would send formData to a backend API 
     console.log('Quote Request Submitted:', formData);
     
     // Simulate API delay
     setTimeout(() => {
       setMessage('Thank you! Your quote request has been submitted. We will contact you shortly.');
-      // Reset form or redirect after successful submission
-      // setFormData({ name: '', email: '', service: '', quantity: '', description: '' }); 
     }, 1500);
     // --- End Mock Submission Logic ---
   };
 
   if (isSubmitted && message) {
     return (
-      <section id="quote" className="py-20 bg-gray-900">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-gray-800 p-10 rounded-xl shadow-2xl">
+      <section id="quote" className={`py-20 ${PAGE_BG_COLOR}`}>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-[${INPUT_BG_COLOR}] p-10 rounded-xl shadow-2xl">
           <h2 className="text-3xl font-extrabold text-orange-400 mb-4">Success!</h2>
           <p className="text-xl text-white">{message}</p>
         </div>
@@ -307,15 +315,15 @@ const QuoteRequestForm = () => {
   }
 
   return (
-    <section id="quote" className="py-20 bg-gray-900">
+    <section id="quote" className={`py-20 ${PAGE_BG_COLOR}`}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-extrabold text-white mb-4">Get a Quote</h2>
+          <h2 className="text-4xl font-extrabold text-orange-400 mb-4">Get a Quote</h2>
           <p className="text-xl text-gray-400">Tell us about your project or component needs.</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-gray-800 p-8 sm:p-12 rounded-xl shadow-2xl space-y-6">
+        <form onSubmit={handleSubmit} className={`bg-[${PRIMARY_TEAL}] p-8 sm:p-12 rounded-xl shadow-2xl space-y-6`}>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -327,7 +335,7 @@ const QuoteRequestForm = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300"
+                className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
                 placeholder="John Doe"
               />
             </div>
@@ -340,7 +348,7 @@ const QuoteRequestForm = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300"
+                className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
                 placeholder="john.doe@company.com"
               />
             </div>
@@ -355,7 +363,7 @@ const QuoteRequestForm = () => {
                 value={formData.service}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:ring-orange-500 focus:border-orange-500 transition duration-300 appearance-none"
+                className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white focus:ring-orange-500 focus:border-orange-500 transition duration-300 appearance-none`}
               >
                 <option value="" disabled>Select a category</option>
                 <option value="Industrial Equipment Supply">Industrial Equipment Supply</option>
@@ -375,7 +383,7 @@ const QuoteRequestForm = () => {
                 name="quantity"
                 value={formData.quantity}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300"
+                className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
                 placeholder="Required Qty/Size"
               />
             </div>
@@ -390,7 +398,7 @@ const QuoteRequestForm = () => {
               value={formData.description}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300"
+              className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
               placeholder="Describe the application, material requirements, or specific challenges..."
             ></textarea>
           </div>
@@ -406,7 +414,6 @@ const QuoteRequestForm = () => {
     </section>
   );
 };
-
 
 // Main App Component
 export default function Home() {
