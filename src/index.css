@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+p,
+a,
+li,
+td, th,
+button,
+input, textarea, select {
+  font-size: 16px !important; /* Set the exact desired size for all these elements */
+  /* Or use: font-size: 1em; to inherit if you set the body's font-size in em or rem */
+  font-weight: normal !important; /* Optional: Reset heading weight if needed */
+}
