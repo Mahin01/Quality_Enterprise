@@ -8,6 +8,7 @@ import OperationalExcellencePage from "../Pages/Services/OperationalExcellence";
 import CustomEngineeringSolutionsPage from "../Pages/Services/CustomEngineering";
 import CalibrationCompliancePage from "../Pages/Services/Compliance&Calibration";
 import ValvesFlowControlPage from "../Pages/Products/Valves&flow_control";
+import SealingSolutionsPage from "../Pages/Products/Sealing_Solutions";
 
  export const router = createBrowserRouter([
     {
@@ -45,6 +46,14 @@ import ValvesFlowControlPage from "../Pages/Products/Valves&flow_control";
           {
             path: "/products/Valves&Flow_Coontrol_Equipments",
             element: <ValvesFlowControlPage></ValvesFlowControlPage>
+          },
+          {
+            path: "/products/Sealing_Solutions",
+            element: <SealingSolutionsPage></SealingSolutionsPage>
+          },
+          {
+            path: "/products/Sealing_Solutions",
+            element: <SealingSolutionsPage></SealingSolutionsPage>
           },
         ]
     }
