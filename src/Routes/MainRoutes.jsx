@@ -10,6 +10,7 @@ import CalibrationCompliancePage from "../Pages/Services/Compliance&Calibration"
 import ValvesFlowControlPage from "../Pages/Products/Valves&flow_control";
 import SealingSolutionsPage from "../Pages/Products/Sealing_Solutions";
 import ConveyorBeltsPage from "../Pages/Products/CoveyorBeltsPage";
+import SparePartsPage from "../Pages/Products/SpareParts&Accessories";
 
  export const router = createBrowserRouter([
     {
@@ -55,6 +56,10 @@ import ConveyorBeltsPage from "../Pages/Products/CoveyorBeltsPage";
           {
             path: "/products/Conveyor_Belts",
             element: <ConveyorBeltsPage></ConveyorBeltsPage>
+          },
+          {
+            path: "/products/Spare_Parts&Accessories",
+            element: <SparePartsPage></SparePartsPage>
           },
         ]
     }
