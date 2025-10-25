@@ -11,6 +11,7 @@ import ValvesFlowControlPage from "../Pages/Products/Valves&flow_control";
 import SealingSolutionsPage from "../Pages/Products/Sealing_Solutions";
 import ConveyorBeltsPage from "../Pages/Products/CoveyorBeltsPage";
 import SparePartsPage from "../Pages/Products/SpareParts&Accessories";
+import PlasticRubberPage from "../Pages/Products/Plastic&RubberEngineering";
 
  export const router = createBrowserRouter([
     {
@@ -61,6 +62,11 @@ import SparePartsPage from "../Pages/Products/SpareParts&Accessories";
             path: "/products/Spare_Parts&Accessories",
             element: <SparePartsPage></SparePartsPage>
           },
+           {
+            path: "/products/Plastic_Parts&Rubber_Engineering_Materials",
+            element: <PlasticRubberPage></PlasticRubberPage>
+          },
+          
         ]
     }
 ])
