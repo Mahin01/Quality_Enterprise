@@ -28,7 +28,7 @@ const NavBar = () => {
     return (
         <>
             {/* Main Navbar - Dark Gray 900 Background, Amber 400 Text */}
-            <div className="navbar bg-gray-900 shadow-2xl w-full top-0 border-b border-amber-500/40 mx-auto text-amber-400 z-60">
+            <div style={{backgroundColor : "#1A364F"}} className="navbar shadow-2xl w-full top-0 border-b border-amber-500/40 mx-auto text-amber-400 z-60">
                 <div className="navbar-start">
                     
                     {/* Hamburger Menu for Small Screens */}
@@ -79,7 +79,7 @@ const NavBar = () => {
                     </div>
 
                     {/* Brand Logo */}
-                    <a href="/"><img className='w-32 h-24' src="logo.png" alt="Brand Logo" /></a> 
+                    <a href="/"><img className='w-32 h-24' src="/logo.png" alt="Brand Logo" /></a> 
                 </div>
 
                 {/* Navbar Links for Larger Screens */}
