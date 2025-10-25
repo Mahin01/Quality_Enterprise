@@ -15,11 +15,11 @@ const NavBar = () => {
     
     // Define the submenu items for Products
     const productSubmenu = [
-        { name: 'Valves & Flow Control Equipment', path: '/products/valves-flow-control' },
-        { name: 'Sealing Solutions – Gaskets, O-Rings & More', path: '/products/sealing-solutions' },
-        { name: 'Conveyor Belts & Accessories', path: '/products/conveyor-belts' },
-        { name: 'Spare Parts & Accessories', path: '/products/spare-parts' },
-        { name: 'Plastic & Rubber Engineering Materials', path: '/products/engineering-materials' },
+        { name: 'Valves & Flow Control Equipment', path: '/products/Valves&Flow_Coontrol_Equipments' },
+        { name: 'Sealing Solutions – Gaskets, O-Rings & More', path: '/products/Sealing_Solutions' },
+        { name: 'Conveyor Belts & Accessories', path: '/products/Conveyor_Belts' },
+        { name: 'Spare Parts & Accessories', path: '/products/Spare_Parts&Accessories' },
+        { name: 'Plastic & Rubber Engineering Materials', path: '/products/Plastic_Parts&Rubber_Engineering_Materials' },
     ];
 
     // Define the reusable link classes
