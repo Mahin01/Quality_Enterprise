@@ -5,6 +5,8 @@ import Services from "../Pages/Services/Services";
 import Products from "../Pages/Products/Products";
 import About from "../Pages/About/About";
 import Home from "../Pages/Home/Home";
+import IndustrialEquipmentSupply from "../Pages/Services/IndustrialEquipmentSupply";
+import IndustrialEquipmentSupplyPage from "../Pages/Services/IndustrialEquipmentSupply";
 
  export const router = createBrowserRouter([
     {
@@ -24,8 +26,8 @@ import Home from "../Pages/Home/Home";
             element: <About></About>
           },
           {
-            path: "/services",
-            element: <Services></Services>
+            path: "/services/industrial_equipment_Supply",
+            element: <IndustrialEquipmentSupplyPage></IndustrialEquipmentSupplyPage>
           },
           {
             path: "/products",
