@@ -73,10 +73,33 @@ const partnersData = [
 ];
 
 
-// Hero Section Component (Unchanged)
+// HERO SECTION COMPONENT (UPDATED WITH VIDEO BACKGROUND)
 const Hero = () => (
-    <section className={`bg-[${PRIMARY_TEAL}] text-white pt-32 pb-24 rounded-b-3xl shadow-2xl`}> 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className={`relative text-white pt-32 pb-24 rounded-b-3xl shadow-2xl overflow-hidden min-h-[500px]`}> 
+        
+        {/* Video Background Container */}
+        <div className="absolute inset-0 z-0">
+            {/* NOTE: You would replace the 'video-placeholder.mp4' with the path to your actual, loopable industrial video.
+                The 'object-cover' ensures it fills the container, and 'muted' and 'loop' are essential for backgrounds.
+            */}
+            <video 
+                autoPlay 
+                muted 
+                loop 
+                playsInline 
+                className="w-full h-full object-cover"
+                poster="https://placehold.co/1920x1080/1A364F/ffffff?text=Industrial+Video+Poster" // Poster image for mobile/load
+            >
+                <source src="/video_background.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            
+            {/* Dark Overlay for Text Readability - Uses DARK_NAVY with 70% opacity */}
+            <div className="absolute inset-0" style={{ backgroundColor: DARK_NAVY, opacity: 0.7 }}></div>
+        </div>
+
+        {/* Content Layer (z-10 ensures it is above the video and overlay) */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
                 <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 leading-tight">
                     <span className={`${ACCENT_ORANGE_CLASS}`}>Engineering</span>-Driven Supply & Service
@@ -97,13 +120,16 @@ const ServiceBlock = ({ data, index }) => {
     const isReverse = index % 2 !== 0; // Alternate the text/image layout
 
     // Alternate between Orange (for even index) and Deep Teal/Blue (for odd index)
+    const isOrangeBg = index % 2 === 0; 
     
     // Use inline style for orange background and dark text, and PRIMARY_TEAL for dark background and light text
-    const textBgStyle = { backgroundColor: PRIMARY_TEAL, color: 'white' }; // Teal background, White text
+    const textBgStyle = isOrangeBg 
+        ? { backgroundColor: ORANGE_ACCENT_HEX, color: DARK_NAVY } // Orange background, Dark Navy text
+        : { backgroundColor: PRIMARY_TEAL, color: 'white' }; // Teal background, White text
 
     // Set title and bullet colors based on background for contrast
-    const titleColorClass =  `${ACCENT_ORANGE_CLASS}`; // Dark on Orange, Orange-400 on Teal
-    const bulletColorStyle = { color: ORANGE_ACCENT_HEX }; // Dark bullet on Orange, Orange bullet on Teal
+    const titleColorClass = isOrangeBg ? 'text-gray-900' : `${ACCENT_ORANGE_CLASS}`; // Dark on Orange, Orange-400 on Teal
+    const bulletColorStyle = isOrangeBg ? { color: DARK_NAVY } : { color: ORANGE_ACCENT_HEX }; // Dark bullet on Orange, Orange bullet on Teal
 
     return (
         <div className={`flex flex-col ${isReverse ? 'md:flex-row-reverse' : 'md:flex-row'} min-h-[400px] shadow-2xl rounded-xl overflow-hidden my-8`}>
@@ -180,35 +206,8 @@ const ProductsSection = () => (
 
 // Client/Partner Section Component (Unchanged)
 const ClientSection = () => {
-    // ... (logic for renderPartnerContent)
     const renderPartnerContent = (partner) => {
-        if (partner.type === 'custom-svg') {
-            if (partner.name === 'Unilever') {
-                return (
-                    <div className="flex flex-col items-center justify-center w-full h-full p-2 bg-white rounded-lg">
-                        <svg viewBox="0 0 100 100" className="w-10 h-10 text-blue-600">
-                            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="6" />
-                            <path fill="currentColor" d="M 30 75 L 30 25 L 70 25 L 70 75" /> 
-                            <circle cx="35" cy="40" r="5" fill="#facc15" /> 
-                            <circle cx="65" cy="60" r="5" fill="#10b981" />
-                        </svg>
-                        <span className="text-xs font-bold text-gray-800 mt-1">{partner.name}</span>
-                    </div>
-                );
-            }
-            if (partner.name === 'BCIC') {
-                return (
-                    <div className="flex flex-col items-center justify-center w-full h-full p-2 bg-white rounded-lg">
-                        <svg viewBox="0 0 100 100" className="w-12 h-12 text-blue-800">
-                            <polygon fill="none" stroke="currentColor" strokeWidth="4" points="50,5 95,25 95,75 50,95 5,75 5,25"/>
-                            <polygon fill="#1d4ed8" points="50,20 80,35 80,65 50,80 20,65 20,35"/>
-                        </svg>
-                        <span className="text-[10px] text-gray-800 font-semibold text-center leading-none mt-1">Bangladesh Chemical Industries Corporation (BCIC)</span>
-                    </div>
-                );
-            }
-        }
-        
+        // Simple placeholder logic for logos
         return (
             <img 
                 src={partner.imageUrl} 
@@ -252,7 +251,7 @@ const ClientSection = () => {
                         <div 
                             key={partner.name} 
                             title={partner.name}
-                            className={`w-28 h-28 mx-auto flex items-center justify-center rounded-xl transition duration-300 shadow-xl border-4 border-orange-400 transform hover:scale-105 overflow-hidden ${partner.type !== 'custom-svg' ? `bg-[${ORANGE_ACCENT_HEX}]` : 'bg-white'}`}
+                            className={`w-28 h-28 mx-auto flex items-center justify-center rounded-xl transition duration-300 shadow-xl border-4 border-orange-400 transform hover:scale-105 overflow-hidden bg-white`}
                         >
                             {renderPartnerContent(partner)}
                         </div>
