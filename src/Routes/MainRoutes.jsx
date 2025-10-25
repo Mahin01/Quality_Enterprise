@@ -35,7 +35,7 @@ import CustomEngineeringSolutionsPage from "../Pages/Services/CustomEngineering"
             element: <IndustrialEquipmentSupplyPage></IndustrialEquipmentSupplyPage>
           },
           {
-            path: "/services/operational_excellence_service",
+            path: "/services/consultancy&trainings",
             element: <OperationalExcellencePage></OperationalExcellencePage>
           },
           {

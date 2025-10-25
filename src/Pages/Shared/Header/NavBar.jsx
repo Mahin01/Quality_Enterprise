@@ -1,13 +1,17 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom'; // 1. 🔥 FIX: Re-import useLocation
+
+// Assuming logo.png is correctly imported or located in the 'public' folder.
+// If your logo is in the 'src' folder, you MUST uncomment the import below:
+// import logoImage from './logo.png'; 
 
 const NavBar = () => {
-    const location = useLocation();
-    // const isHomePage = location.pathname === '/'; // No longer needed
+    // 2. 🔥 FIX: Calling useLocation to get the current path
+    const location = useLocation(); 
 
     // --- Submenu Definitions ---
     const serviceSubmenu = [
-        { name: 'Operational Excellence & Efficiency', path: '/services/operational_excellence_service' },
+        { name: 'Consultancy & Trainings', path: '/services/consultancy&trainings' },
         { name: 'MEP Works & Engineering Solutions', path: '/services/MEP_Works_&_Engineering_Solutions' },
         { name: 'Calibration & Compliance Services', path: '/services/calibration&compliance' },
     ];
@@ -22,6 +26,10 @@ const NavBar = () => {
 
     const linkClasses = 'hover:bg-transparent hover:text-amber-400 text-white';
     const PRIMARY_TEAL = "#1A364F";
+    // NOTE: If using the import method, use the imported variable here:
+    // const logoSrc = logoImage; 
+    // If you prefer the 'public' folder method, the string path is fine:
+    const logoSrc = "logo.png"; 
 
     return (
         <>
@@ -32,7 +40,9 @@ const NavBar = () => {
             >
                 
                 {/* Container for Top Row (Mobile Menu | Logo | Empty Space) */}
-                <div className="flex justify-between items-center max-w-7xl mx-auto px-4 h-28"> 
+                {/* 3. ✅ Check: The 'relative' class is correctly on this element, 
+                       which serves as the positioning context for the absolute logo. */}
+                <div className="flex justify-between items-center max-w-7xl mx-auto px-4 h-28 relative"> 
                     
                     {/* 1. START - Mobile Menu (Dropdown) */}
                     <div className="dropdown lg:hidden">
@@ -46,15 +56,19 @@ const NavBar = () => {
                         <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-gray-800 text-white rounded-box w-52 text-xs"> 
                             <li><Link className={linkClasses} to={"/"}>Home</Link></li>
                             
-                            {/* 🔥 MODIFIED: Services links are now top-level in the mobile menu dropdown */}
+                            {/* Services links are now top-level in the mobile menu dropdown */}
                             {serviceSubmenu.map((item) => (
                                 <li key={item.path}>
-                                    <Link className={linkClasses} to={item.path} style={{ color: location.pathname.startsWith('/services') ? '#fcd34d' : 'inherit' }}>
+                                    {/* location.pathname is now defined */}
+                                    <Link 
+                                        className={linkClasses} 
+                                        to={item.path} 
+                                        style={{ color: location.pathname.startsWith('/services') ? '#fcd34d' : 'inherit' }}
+                                    >
                                         {item.name}
                                     </Link>
                                 </li>
                             ))}
-                            {/* 🔥 MODIFIED: End of Services modification */}
 
                             {/* Products Submenu (Mobile) - KEPT AS A SUBMENU */}
                             <li tabIndex={0} className="menu-dropdown-toggle">
@@ -79,20 +93,19 @@ const NavBar = () => {
                     </div>
 
                     {/* 2. CENTER - Brand Logo (Always visible & Centered) */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2">
+                    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
                         <Link to="/" className="flex items-center">
-                            {/* Logo size increased (w-40 h-28) */}
                             <img 
                                 className="w-64 h-36" 
-                                src="logo.png" 
-                                alt="Brand Logo Placeholder" 
+                                // ✅ Used the defined logoSrc variable
+                                src={logoSrc} 
+                                alt="Brand Logo" 
                             />
                         </Link>
                     </div>
 
                     {/* 3. END - Empty container to ensure logo stays centered */}
                     <div className="w-10 h-10 lg:w-0 lg:h-0">
-                        {/* The CTA button was here and has been deleted. */}
                     </div>
                 </div>
 
@@ -102,7 +115,7 @@ const NavBar = () => {
                     <ul className="menu menu-horizontal px-1 text-xs mx-auto">
                         <li><Link className={linkClasses} to={"/"}>Home</Link></li>
                         
-                        {/* 🔥 MODIFIED: Services links are now top-level in the desktop menu */}
+                        {/* Services links are now top-level in the desktop menu */}
                         {serviceSubmenu.map((item) => (
                             <li key={item.path}>
                                 <Link 
@@ -113,8 +126,6 @@ const NavBar = () => {
                                 </Link>
                             </li>
                         ))}
-                        {/* 🔥 MODIFIED: End of Services modification */}
-
 
                         {/* Products (Desktop) - KEPT AS A SUBMENU */}
                         <li tabIndex={0} className="relative group">

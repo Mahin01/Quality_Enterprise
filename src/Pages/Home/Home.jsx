@@ -13,10 +13,54 @@ const INPUT_BORDER_COLOR = '#367999';
 
 // Mock Data
 const servicesData = [
+    
+   
     {
-        title: "1. Industrial Equipment Supply",
+        title: "1. Operational Excellence & Efficiency",
+        slug: "operational-excellence-efficiency",
+        description: "Empower your operations with modern manufacturing principles to minimize downtime, reduce waste, and achieve continuous, sustainable improvement.",
+        details: [
+            "Consultancy & Implementation of LSS & WCM.",
+            "Loss Analysis, Productivity & Cost Optimization.",
+            "Value Engineering for Sustainable Solutions.",
+            "Process Improvement & Waste Reduction.",
+            "Data-Driven Problem Solving & Functional Redesign."
+        ],
+        image: "service3.png" 
+    },
+
+    {
+        title: "2. MEP Works & Engineering Solutions",
+        slug: "MEP-Works-Engineering-Solutions",
+        description: "Our experienced engineering team provides tailored solutions, on-site troubleshooting, and reverse engineering for critical mechanical and electrical system performance.",
+        details: [
+            "Adaptations for Process-Specific Challenges.",
+            "On-Site Troubleshooting & Failure Diagnosis.",
+            "Maintenance and Energy & Cost Optimization.",
+            "Emergency Supply & Response for Critical Breakdowns.",
+            "Equipment Retrofitting, Replacement & Reverse Engineering."
+        ],
+        image: "service2.png" 
+    },
+
+   
+    {
+        title: "3. Calibration & Compliance Services",
+        slug: "calibration-compliance-services",
+        description: "Partner with our ISO/IEC 17025 accredited laboratory for expert calibration, ensuring your instruments meet critical industry compliance standards.",
+        details: [
+            "ISO/IEC 17025 accredited calibration laboratory (NABL & BAB)",
+            "On-site & in-lab calibration for industrial instruments",
+            "Expertise in pharmaceuticals, FMCG, oil & gas, textiles, power, and healthcare sectors"
+        ],
+        image: "service4.png" 
+    },
+
+    
+    {
+        title: "4. Industrial Equipment Supply",
         slug: "industrial-equipment-supply",
-        description: "We source and deliver a comprehensive range of critical industrial components, from complex valve systems to specialized conveyor belts and sealing solutions.", 
+        description: "We source and deliver a comprehensive range of critical industrial components, from complex valve systems to specialized conveyor belts and sealing solutions.",
         details: [
             "Gate Valves, Ball Valves, Strainers",
             "Gaskets, O-Rings, Sealing Materials",
@@ -24,43 +68,7 @@ const servicesData = [
             "Bearings, Couplings, Industrial Hoses",
             "All sourced from trusted global and local manufacturers"
         ],
-        image: "service1.png"
-    },
-    {
-        title: "2. Engineering Solutions",
-        slug: "engineering-solutions",
-        description: "Our experienced team provides technical expertise for system diagnosis, retrofitting, and custom component sourcing to optimize your plant's performance.", 
-        details: [
-            "System diagnosis & failure analysis",
-            "Equipment retrofitting and replacement",
-            "Custom component sourcing based on specification",
-            "Process improvement consultation (based on field experience)"
-        ],
-        image: "service2.png"
-    },
-    {
-        title: "3. Maintenance, Custom Fabrication & Modifications",
-        slug: "maintenance-custom-fabrication-modifications",
-        description: "We offer tailored maintenance support, rapid emergency supply, and custom fabrication services like gasket cutting to meet urgent and unique operational needs.", 
-        details: [
-            "Custom cut gaskets or belts",
-            "Adaptations for process-specific challenges",
-            "Vendor coordination for special fabrication jobs",
-            "On-site troubleshooting & inspection",
-            "Emergency supply and rapid response for critical breakdowns"
-        ],
-        image: "service3.png"
-    },
-    {
-        title: "4. Calibration & Compliance Services",
-        slug: "calibration-compliance-services",
-        description: "Partner with our ISO/IEC 17025 accredited laboratory for expert on-site and in-lab calibration, ensuring your instruments meet critical industry compliance standards.", 
-        details: [
-            "ISO/IEC 17025 accredited calibration laboratory (NABL & BAB)",
-            "On-site & in-lab calibration for industrial instruments",
-            "Expertise in pharmaceuticals, FMCG, oil & gas, textiles, power, and healthcare sectors"
-        ],
-        image: "service4.png"
+        image: "service1.png" 
     },
 ];
 
