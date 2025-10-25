@@ -120,16 +120,13 @@ const ServiceBlock = ({ data, index }) => {
     const isReverse = index % 2 !== 0; // Alternate the text/image layout
 
     // Alternate between Orange (for even index) and Deep Teal/Blue (for odd index)
-    const isOrangeBg = index % 2 === 0; 
     
     // Use inline style for orange background and dark text, and PRIMARY_TEAL for dark background and light text
-    const textBgStyle = isOrangeBg 
-        ? { backgroundColor: ORANGE_ACCENT_HEX, color: DARK_NAVY } // Orange background, Dark Navy text
-        : { backgroundColor: PRIMARY_TEAL, color: 'white' }; // Teal background, White text
+    const textBgStyle = { backgroundColor: PRIMARY_TEAL, color: 'white' }; // Teal background, White text
 
     // Set title and bullet colors based on background for contrast
-    const titleColorClass = isOrangeBg ? 'text-gray-900' : `${ACCENT_ORANGE_CLASS}`; // Dark on Orange, Orange-400 on Teal
-    const bulletColorStyle = isOrangeBg ? { color: DARK_NAVY } : { color: ORANGE_ACCENT_HEX }; // Dark bullet on Orange, Orange bullet on Teal
+    const titleColorClass = `${ACCENT_ORANGE_CLASS}`; // Dark on Orange, Orange-400 on Teal
+    const bulletColorStyle = { color: ORANGE_ACCENT_HEX }; // Dark bullet on Orange, Orange bullet on Teal
 
     return (
         <div className={`flex flex-col ${isReverse ? 'md:flex-row-reverse' : 'md:flex-row'} min-h-[400px] shadow-2xl rounded-xl overflow-hidden my-8`}>
