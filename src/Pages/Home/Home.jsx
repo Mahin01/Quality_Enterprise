@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 
-// --- Color and Style Constants (Copied from CalibrationCompliancePage for consistency) ---
+// --- Color and Style Constants (Consistent Theme) ---
 const PRIMARY_TEAL = '#1A364F'; // Primary Block/Accent Color
 const DARK_NAVY = '#0F2133'; // New darkest background color
 const ORANGE_ACCENT_HEX = '#FF8C00'; // Primary Orange Accent
 const ACCENT_ORANGE_CLASS = 'text-orange-400';
 const PAGE_BG_COLOR = `bg-[${DARK_NAVY}]`;
 
-// Custom Colors for Form Elements to match the theme
+// Custom Colors for Form Elements
 const INPUT_BG_COLOR = '#152A3F';
 const INPUT_BORDER_COLOR = '#367999';
 
-// Mock Data (Unchanged)
+// Mock Data (Unchanged for brevity)
 const servicesData = [
     {
         title: "1. Industrial Equipment Supply",
@@ -73,9 +73,8 @@ const partnersData = [
 ];
 
 
-// Hero Section Component
+// Hero Section Component (Unchanged)
 const Hero = () => (
-    // Uses PRIMARY_TEAL for background and ACCENT_ORANGE_CLASS for text
     <section className={`bg-[${PRIMARY_TEAL}] text-white pt-32 pb-24 rounded-b-3xl shadow-2xl`}> 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
@@ -85,7 +84,6 @@ const Hero = () => (
                 <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
                     We provide tailored engineering solutions that solve real-world problems in industrial settings, ensuring quality and reliability for continuous operations.
                 </p>
-                {/* Button uses ORANGE_ACCENT_HEX */}
                 <a href="#quote" className={`inline-block px-10 py-4 text-lg font-bold text-gray-900 rounded-xl shadow-2xl transform hover:scale-105 transition duration-300`} style={{ backgroundColor: ORANGE_ACCENT_HEX }}>
                     Request a Quote Today
                 </a>
@@ -94,17 +92,21 @@ const Hero = () => (
     </section>
 );
 
-// Service Block Component (Alternating Layout and Color)
+// Service Block Component (IMPROVED VISIBILITY)
 const ServiceBlock = ({ data, index }) => {
     const isReverse = index % 2 !== 0; // Alternate the text/image layout
 
     // Alternate between Orange (for even index) and Deep Teal/Blue (for odd index)
     const isOrangeBg = index % 2 === 0; 
-    // Use the primary teal and the ORANGE_ACCENT_HEX for the alternating block backgrounds
-    const textBg = isOrangeBg ? `bg-[${ORANGE_ACCENT_HEX}]` : `bg-[${PRIMARY_TEAL}]`;
-    const textColor = isOrangeBg ? 'text-gray-900' : 'text-white'; // Dark text on orange, light text on teal
-    const titleColor = isOrangeBg ? 'text-gray-900' : `${ACCENT_ORANGE_CLASS}`; // Use the primary orange class on the dark background
-    const bulletColor = isOrangeBg ? 'text-gray-900' : `text-orange-500`; // Orange bullet on dark background, dark bullet on orange background
+    
+    // Use inline style for orange background and dark text, and PRIMARY_TEAL for dark background and light text
+    const textBgStyle = isOrangeBg 
+        ? { backgroundColor: ORANGE_ACCENT_HEX, color: DARK_NAVY } // Orange background, Dark Navy text
+        : { backgroundColor: PRIMARY_TEAL, color: 'white' }; // Teal background, White text
+
+    // Set title and bullet colors based on background for contrast
+    const titleColorClass = isOrangeBg ? 'text-gray-900' : `${ACCENT_ORANGE_CLASS}`; // Dark on Orange, Orange-400 on Teal
+    const bulletColorStyle = isOrangeBg ? { color: DARK_NAVY } : { color: ORANGE_ACCENT_HEX }; // Dark bullet on Orange, Orange bullet on Teal
 
     return (
         <div className={`flex flex-col ${isReverse ? 'md:flex-row-reverse' : 'md:flex-row'} min-h-[400px] shadow-2xl rounded-xl overflow-hidden my-8`}>
@@ -118,15 +120,15 @@ const ServiceBlock = ({ data, index }) => {
                 />
             </div>
 
-            {/* Content Column */}
-            <div className={`md:w-1/2 p-8 sm:p-12 flex flex-col justify-center ${textBg} ${textColor}`}>
-                <h3 className={`text-2xl sm:text-3xl font-bold mb-4 ${titleColor}`}>
+            {/* Content Column - Applying styles here for maximum clarity */}
+            <div className={`md:w-1/2 p-8 sm:p-12 flex flex-col justify-center`} style={textBgStyle}>
+                <h3 className={`text-2xl sm:text-3xl font-bold mb-4 ${titleColorClass}`}>
                     {data.title}
                 </h3>
                 <ul className="list-none space-y-3">
                     {data.details.map((detail, i) => (
                         <li key={i} className="flex items-start">
-                            <span className={`text-xl font-extrabold mr-3 ${bulletColor}`}>&bull;</span>
+                            <span className={`text-xl font-extrabold mr-3`} style={bulletColorStyle}>&bull;</span>
                             <p className="text-lg leading-relaxed">{detail}</p>
                         </li>
                     ))}
@@ -136,9 +138,8 @@ const ServiceBlock = ({ data, index }) => {
     );
 };
 
-// Services Section Container
+// Services Section Container (Unchanged)
 const ServicesSection = () => (
-    // Uses PAGE_BG_COLOR (DARK_NAVY) for the background
     <section id="services" className={`py-16 ${PAGE_BG_COLOR}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className={`text-4xl font-extrabold text-center mb-4 ${ACCENT_ORANGE_CLASS}`}>Our Services</h2>
@@ -150,18 +151,16 @@ const ServicesSection = () => (
     </section>
 );
 
-// Product Card Component
+// Product Card Component (Unchanged)
 const ProductCard = ({ name, description }) => (
-    // Uses PRIMARY_TEAL for card background and ACCENT_ORANGE_CLASS for title
     <div className={`bg-[${PRIMARY_TEAL}] p-8 rounded-xl shadow-xl hover:shadow-orange-500/50 transition duration-300 border-t-4 border-orange-600 transform hover:-translate-y-1`}>
         <h4 className={`text-2xl font-bold mb-3 ${ACCENT_ORANGE_CLASS}`}>{name}</h4>
         <p className="text-gray-300">{description}</p>
     </div>
 );
 
-// Product Categories Section Container
+// Product Categories Section Container (Unchanged)
 const ProductsSection = () => (
-    // Uses PRIMARY_TEAL for the section background
     <section id="products" className={`py-20 bg-[${PRIMARY_TEAL}]`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className={`text-4xl font-extrabold text-center mb-4 ${ACCENT_ORANGE_CLASS}`}>Product Categories</h2>
@@ -182,15 +181,14 @@ const ProductsSection = () => (
     </section>
 );
 
-// Client/Partner Section Component
+// Client/Partner Section Component (Unchanged)
 const ClientSection = () => {
-
+    // ... (logic for renderPartnerContent)
     const renderPartnerContent = (partner) => {
         if (partner.type === 'custom-svg') {
             if (partner.name === 'Unilever') {
                 return (
                     <div className="flex flex-col items-center justify-center w-full h-full p-2 bg-white rounded-lg">
-                        {/* Simplified Unilever 'U' and dots approximation in their brand colors */}
                         <svg viewBox="0 0 100 100" className="w-10 h-10 text-blue-600">
                             <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="6" />
                             <path fill="currentColor" d="M 30 75 L 30 25 L 70 25 L 70 75" /> 
@@ -204,7 +202,6 @@ const ClientSection = () => {
             if (partner.name === 'BCIC') {
                 return (
                     <div className="flex flex-col items-center justify-center w-full h-full p-2 bg-white rounded-lg">
-                        {/* BCIC geometric approximation */}
                         <svg viewBox="0 0 100 100" className="w-12 h-12 text-blue-800">
                             <polygon fill="none" stroke="currentColor" strokeWidth="4" points="50,5 95,25 95,75 50,95 5,75 5,25"/>
                             <polygon fill="#1d4ed8" points="50,20 80,35 80,65 50,80 20,65 20,35"/>
@@ -215,7 +212,6 @@ const ClientSection = () => {
             }
         }
         
-        // Default image rendering, relying on the onError to trigger fallback (Initials)
         return (
             <img 
                 src={partner.imageUrl} 
@@ -226,7 +222,6 @@ const ClientSection = () => {
                     e.target.onerror = null; 
                     div.classList.add('flex', 'items-center', 'justify-center', 'text-white', 'font-bold', 'text-xl', 'bg-orange-600');
                     e.target.style.display = 'none';
-                    // Calculate initials (e.g., Habib Group -> HG)
                     const initials = partner.name.split(' ').map(n => n[0]).join('');
                     div.innerHTML = `<span class="text-3xl">${initials}</span>`;
                 }}
@@ -235,13 +230,11 @@ const ClientSection = () => {
     };
 
     return (
-        // Uses PAGE_BG_COLOR (DARK_NAVY) for the background
         <section id="clients" className={`py-20 ${PAGE_BG_COLOR}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 className={`text-4xl font-extrabold mb-2 ${ACCENT_ORANGE_CLASS}`}>Client List</h2>
                 <p className={`text-xl mb-10 ${ACCENT_ORANGE_CLASS}`}>Trusted by Leading Industries</p>
 
-                {/* Industries Served List */}
                 <div className="max-w-4xl mx-auto mb-16">
                     <p className="text-lg text-gray-300 mb-6">
                         Over the years, Quality Enterprise has built strong relationships with key players across the <span className={`font-semibold text-orange-300`}>FMCG, chemical, packaging, and utilities sectors.</span> Our reputation is based on timely delivery, accurate solutions, and technical dependability.
@@ -257,13 +250,11 @@ const ClientSection = () => {
 
                 <h3 className={`text-3xl font-extrabold mb-8 border-b-2 border-orange-500 inline-block pb-1 ${ACCENT_ORANGE_CLASS}`}>Our Partners</h3>
                 
-                {/* Partner Logos */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-center">
                     {partnersData.map((partner) => (
                         <div 
                             key={partner.name} 
                             title={partner.name}
-                            // Using ORANGE_ACCENT_HEX for the border
                             className={`w-28 h-28 mx-auto flex items-center justify-center rounded-xl transition duration-300 shadow-xl border-4 border-orange-400 transform hover:scale-105 overflow-hidden ${partner.type !== 'custom-svg' ? `bg-[${ORANGE_ACCENT_HEX}]` : 'bg-white'}`}
                         >
                             {renderPartnerContent(partner)}
@@ -276,14 +267,10 @@ const ClientSection = () => {
 };
 
 
-// Quote Request Form Component
+// Quote Request Form Component (Unchanged)
 const QuoteRequestForm = () => {
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        service: '',
-        quantity: '',
-        description: '',
+        name: '', email: '', service: '', quantity: '', description: '',
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [message, setMessage] = useState('');
@@ -295,9 +282,7 @@ const QuoteRequestForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsSubmitted(true);
-        
         console.log('Quote Request Submitted:', formData);
-        
         setTimeout(() => {
             setMessage('Thank you! Your quote request has been submitted. We will contact you shortly.');
         }, 1500);
@@ -305,9 +290,7 @@ const QuoteRequestForm = () => {
 
     if (isSubmitted && message) {
         return (
-            // Uses PAGE_BG_COLOR (DARK_NAVY) for the background
             <section id="quote" className={`py-20 ${PAGE_BG_COLOR}`}>
-                {/* Uses INPUT_BG_COLOR for the success message box */}
                 <div className={`max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center p-10 rounded-xl shadow-2xl`} style={{ backgroundColor: INPUT_BG_COLOR }}>
                     <h2 className={`text-3xl font-extrabold mb-4 ${ACCENT_ORANGE_CLASS}`}>Success!</h2>
                     <p className="text-xl text-white">{message}</p>
@@ -317,7 +300,6 @@ const QuoteRequestForm = () => {
     }
 
     return (
-        // Uses PAGE_BG_COLOR (DARK_NAVY) for the background
         <section id="quote" className={`py-20 ${PAGE_BG_COLOR}`}>
             <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 
@@ -326,20 +308,13 @@ const QuoteRequestForm = () => {
                     <p className="text-xl text-gray-400">Tell us about your project or component needs.</p>
                 </div>
 
-                {/* Uses PRIMARY_TEAL for the form background */}
                 <form onSubmit={handleSubmit} className={`bg-[${PRIMARY_TEAL}] p-8 sm:p-12 rounded-xl shadow-2xl space-y-6`}>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
                             <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                required
-                                // Form input styling using custom colors
+                                type="text" id="name" name="name" value={formData.name} onChange={handleChange} required
                                 className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
                                 placeholder="John Doe"
                             />
@@ -347,13 +322,7 @@ const QuoteRequestForm = () => {
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Work Email</label>
                             <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                                // Form input styling using custom colors
+                                type="email" id="email" name="email" value={formData.email} onChange={handleChange} required
                                 className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
                                 placeholder="john.doe@company.com"
                             />
@@ -364,12 +333,7 @@ const QuoteRequestForm = () => {
                         <div>
                             <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-2">Product/Service of Interest</label>
                             <select
-                                id="service"
-                                name="service"
-                                value={formData.service}
-                                onChange={handleChange}
-                                required
-                                // Form select styling using custom colors
+                                id="service" name="service" value={formData.service} onChange={handleChange} required
                                 className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white focus:ring-orange-500 focus:border-orange-500 transition duration-300 appearance-none`}
                             >
                                 <option value="" disabled>Select a category</option>
@@ -385,12 +349,7 @@ const QuoteRequestForm = () => {
                         <div>
                             <label htmlFor="quantity" className="block text-sm font-medium text-gray-300 mb-2">Quantity or Size (e.g., 100 units, 4" Gasket)</label>
                             <input
-                                type="text"
-                                id="quantity"
-                                name="quantity"
-                                value={formData.quantity}
-                                onChange={handleChange}
-                                // Form input styling using custom colors
+                                type="text" id="quantity" name="quantity" value={formData.quantity} onChange={handleChange}
                                 className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
                                 placeholder="Required Qty/Size"
                             />
@@ -400,13 +359,7 @@ const QuoteRequestForm = () => {
                     <div>
                         <label htmlFor="description" className="block text-sm font-medium text-gray-300 mb-2">Project Description / Detailed Requirements</label>
                         <textarea
-                            id="description"
-                            name="description"
-                            rows="4"
-                            value={formData.description}
-                            onChange={handleChange}
-                            required
-                            // Form textarea styling using custom colors
+                            id="description" name="description" rows="4" value={formData.description} onChange={handleChange} required
                             className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
                             placeholder="Describe the application, material requirements, or specific challenges..."
                         ></textarea>
@@ -414,7 +367,6 @@ const QuoteRequestForm = () => {
 
                     <button
                         type="submit"
-                        // Submit button uses ORANGE_ACCENT_HEX
                         className={`w-full px-6 py-3 text-lg font-bold text-gray-900 rounded-xl shadow-lg hover:bg-orange-500 transform hover:scale-[1.01] transition duration-300`}
                         style={{ backgroundColor: ORANGE_ACCENT_HEX }}
                     >
@@ -426,10 +378,9 @@ const QuoteRequestForm = () => {
     );
 };
 
-// Main App Component
+// Main App Component (Unchanged)
 export default function Home() {
     return (
-        // Uses DARK_NAVY color from the compliance page
         <div className={`min-h-screen font-sans`} style={{ backgroundColor: DARK_NAVY }}>
             <main>
                 <Hero />
