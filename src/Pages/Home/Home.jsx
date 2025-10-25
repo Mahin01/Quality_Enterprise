@@ -22,7 +22,7 @@ const servicesData = [
             "Bearings, Couplings, Industrial Hoses",
             "All sourced from trusted global and local manufacturers"
         ],
-        image: "https://placehold.co/400x300/264653/ffffff?text=Industrial+Supply"
+        image: "service1.png"
     },
     {
         title: "2. Engineering Solutions",
@@ -32,10 +32,10 @@ const servicesData = [
             "Custom component sourcing based on specification",
             "Process improvement consultation (based on field experience)"
         ],
-        image: "https://placehold.co/400x300/E76F51/ffffff?text=Engineering+Solutions"
+        image: "service2.png"
     },
     {
-        title: "4. Maintenance, Custom Fabrication & Modifications",
+        title: "3. Maintenance, Custom Fabrication & Modifications",
         details: [
             "Custom cut gaskets or belts",
             "Adaptations for process-specific challenges",
@@ -43,16 +43,16 @@ const servicesData = [
             "On-site troubleshooting & inspection",
             "Emergency supply and rapid response for critical breakdowns"
         ],
-        image: "https://placehold.co/400x300/2A9D8F/ffffff?text=Custom+Fabrication"
+        image: "service3.png"
     },
     {
-        title: "5. Calibration & Compliance Services",
+        title: "4. Calibration & Compliance Services",
         details: [
             "ISO/IEC 17025 accredited calibration laboratory (NABL & BAB)",
             "On-site & in-lab calibration for industrial instruments",
             "Expertise in pharmaceuticals, FMCG, oil & gas, textiles, textiles, power, and healthcare sectors"
         ],
-        image: "https://placehold.co/400x300/F4A261/ffffff?text=Compliance+Services"
+        image: "service4.png"
     },
 ];
 
@@ -64,12 +64,12 @@ const productCategories = [
 ];
 
 const partnersData = [
-    { name: "Unilever", type: "custom-svg" }, 
-    { name: "BCIC", type: "custom-svg" },
-    { name: "KAFCO", imageUrl: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" },
-    { name: "Habib Group", imageUrl: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" },
-    { name: "Salehsteel", imageUrl: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" },
-    { name: "ASTECH", imageUrl: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" },
+    { name: "Unilever", imageUrl: "/Picture1.png" }, 
+    { name: "BCIC", imageUrl: "/Picture2.png"  },
+    { name: "KAFCO", imageUrl: "Picture3.png" },
+    { name: "Habib Group", imageUrl: "Picture4.png" },
+    { name: "Salehsteel", imageUrl: "Picture5.png"},
+    { name: "ASTECH", imageUrl: "Picture6.png" },
 ];
 
 
@@ -97,16 +97,13 @@ const ServiceBlock = ({ data, index }) => {
     const isReverse = index % 2 !== 0; // Alternate the text/image layout
 
     // Alternate between Orange (for even index) and Deep Teal/Blue (for odd index)
-    const isOrangeBg = index % 2 === 0; 
     
     // Use inline style for orange background and dark text, and PRIMARY_TEAL for dark background and light text
-    const textBgStyle = isOrangeBg 
-        ? { backgroundColor: ORANGE_ACCENT_HEX, color: DARK_NAVY } // Orange background, Dark Navy text
-        : { backgroundColor: PRIMARY_TEAL, color: 'white' }; // Teal background, White text
+    const textBgStyle = { backgroundColor: PRIMARY_TEAL, color: 'white' }; // Teal background, White text
 
     // Set title and bullet colors based on background for contrast
-    const titleColorClass = isOrangeBg ? 'text-gray-900' : `${ACCENT_ORANGE_CLASS}`; // Dark on Orange, Orange-400 on Teal
-    const bulletColorStyle = isOrangeBg ? { color: DARK_NAVY } : { color: ORANGE_ACCENT_HEX }; // Dark bullet on Orange, Orange bullet on Teal
+    const titleColorClass =  `${ACCENT_ORANGE_CLASS}`; // Dark on Orange, Orange-400 on Teal
+    const bulletColorStyle = { color: ORANGE_ACCENT_HEX }; // Dark bullet on Orange, Orange bullet on Teal
 
     return (
         <div className={`flex flex-col ${isReverse ? 'md:flex-row-reverse' : 'md:flex-row'} min-h-[400px] shadow-2xl rounded-xl overflow-hidden my-8`}>
