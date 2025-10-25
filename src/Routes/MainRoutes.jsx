@@ -7,6 +7,7 @@ import About from "../Pages/About/About";
 import Home from "../Pages/Home/Home";
 import IndustrialEquipmentSupply from "../Pages/Services/IndustrialEquipmentSupply";
 import IndustrialEquipmentSupplyPage from "../Pages/Services/IndustrialEquipmentSupply";
+import OperationalExcellencePage from "../Pages/Services/OperationalExcellence";
 
  export const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ import IndustrialEquipmentSupplyPage from "../Pages/Services/IndustrialEquipment
           {
             path: "/services/industrial_equipment_Supply",
             element: <IndustrialEquipmentSupplyPage></IndustrialEquipmentSupplyPage>
+          },
+          {
+            path: "/services/operational_excellence_service",
+            element: <OperationalExcellencePage></OperationalExcellencePage>
           },
           {
             path: "/products",
