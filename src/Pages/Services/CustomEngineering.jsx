@@ -66,10 +66,12 @@ const CustomEngineeringSolutionsPage = () => (
                     We go beyond supply to offer diagnostics, troubleshooting, and custom engineering support to restore and improve your critical processes.
                 </p>
                 {/* CTA Button - Styled to match OperationalExcellencePage */}
+                <a href="/contact">
                 <button className={`mt-8 transition duration-300 hover:scale-[1.02] hover:shadow-lg text-lg font-semibold py-3 px-8 rounded-xl flex items-center justify-center mx-auto`} style={{ backgroundColor: ORANGE_ACCENT_HEX, color: DARK_NAVY }}>
                     Request Immediate Support
                     <ChevronRightIcon className="ml-2 w-5 h-5 text-gray-900" />
                 </button>
+                </a>
             </div>
         </div>
 
@@ -155,7 +157,7 @@ const CustomEngineeringSolutionsPage = () => (
             <div className={`text-center mt-16 p-10 rounded-xl shadow-2xl`} style={{ backgroundColor: PRIMARY_TEAL }}>
                 <h3 className={`text-3xl font-bold mb-4 ${ACCENT_ORANGE_CLASS}`}>Don't Let Downtime Define Your Production.</h3>
                 <p className="text-lg text-gray-300 mb-6">Our technical team is ready to assist with urgent component replacement and advanced troubleshooting to restore your critical processes.</p>
-                <a href="#contact" className={`transition duration-300 hover:scale-[1.02] hover:shadow-lg text-lg font-semibold py-3 px-8 rounded-xl inline-flex items-center justify-center`} style={{ backgroundColor: ORANGE_ACCENT_HEX, color: DARK_NAVY }}>
+                <a href="/contact" className={`transition duration-300 hover:scale-[1.02] hover:shadow-lg text-lg font-semibold py-3 px-8 rounded-xl inline-flex items-center justify-center`} style={{ backgroundColor: ORANGE_ACCENT_HEX, color: DARK_NAVY }}>
                     Initiate Technical Consultation
                 </a>
             </div>

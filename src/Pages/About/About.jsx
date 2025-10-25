@@ -1,160 +1,103 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const NavBar = () => {
-
-    // --- Color Constants (Matching the sub-page theme) ---
-    const PRIMARY_TEAL = '#1A364F';
-    const DARK_NAVY = '#0F2133';
-    const ORANGE_ACCENT_HEX = '#FF8C00'; 
-
-    // --- Submenu Definitions ---
-    const serviceSubmenu = [
-        { name: 'Industrial Equipment Supply', path: '/services/Industrial_Equipment_Supply' },
-        { name: 'Operational Excellence & Efficiency', path: '/services/Operational_Excellence&Efficiency' },
-        { name: 'MEP Works & Engineering Solutions', path: '/services/MEP_Works&Engineering_Solutions' },
-        { name: 'Calibration & Compliance Services', path: '/services/Calibration&Compliance_Services' },
-    ];
+const About = () => {
+    // --- Color and Style Constants (Matching the established theme) ---
+    const PRIMARY_TEAL = '#1A364F';     // Card Background
+    const DARK_NAVY = '#0F2133';        // Main Section Background
+    const ORANGE_ACCENT_HEX = '#FF8C00';// Accent Color
     
-    const productSubmenu = [
-        { name: 'Valves & Flow Control Equipment', path: '/products/valves-flow-control' },
-        { name: 'Sealing Solutions – Gaskets, O-Rings & More', path: '/products/sealing-solutions' },
-        { name: 'Conveyor Belts & Accessories', path: '/products/conveyor-belts' },
-        { name: 'Spare Parts & Accessories', path: '/products/spare-parts' },
-        { name: 'Plastic & Rubber Engineering Materials', path: '/products/engineering-materials' },
-    ];
+    // Consistent Tailwind classes for typography
+    const BODY_TEXT = 'text-gray-300';
+    const ACCENT_TEXT_CLASS = 'text-white'; // Use a class for consistency in some places
 
-    // Define the reusable link classes
-    // Use inline style for orange accent on hover, keeping text white otherwise.
-    const linkClasses = `text-white hover:bg-transparent transition duration-200`;
-
-    // Define the primary orange style for the main menu items
-    const accentStyle = { color: ORANGE_ACCENT_HEX };
-    const accentHoverStyle = { color: ORANGE_ACCENT_HEX };
-
+    // Lucide icons for Core Principles
+    const MissionIcon = () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8" style={{ color: ORANGE_ACCENT_HEX }}>
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+    );
+    const VisionIcon = () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8" style={{ color: ORANGE_ACCENT_HEX }}>
+            <path d="M2 12s3-4 8-4 8 4 8 4-3 4-8 4-8-4-8-4Z"/>
+            <circle cx="10" cy="12" r="3"/>
+        </svg>
+    );
+    const ValuesIcon = () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8" style={{ color: ORANGE_ACCENT_HEX }}>
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+    );
 
     return (
-        <>
-            {/* Main Navbar - Primary Teal Background, Orange Accent Text */}
-            <div 
-                className="navbar shadow-2xl w-full top-0 border-b border-white/10 mx-auto z-60" 
-                style={{ backgroundColor: PRIMARY_TEAL, color: 'white' }}
-            >
-                <div className="navbar-start">
-                    
-                    {/* Hamburger Menu for Small Screens */}
-                    <div className="dropdown lg:hidden">
-                        <label tabIndex={0} className="btn btn-ghost">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
-                            </svg>
-                        </label>
-                        
-                        {/* Dropdown Menu for Small Screens - Dark Navy Background */}
-                        <ul 
-                            className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52 z-20"
-                            style={{ backgroundColor: DARK_NAVY }}
-                        > 
-                            <li><Link className={linkClasses} to={"/"}>Home</Link></li>
-                            
-                            {/* Nested Submenu for Services (Small Screens) */}
-                            <li tabIndex={0}>
-                                <a className={`${linkClasses} justify-between`} style={accentStyle}>
-                                    Services
-                                    <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
-                                </a>
-                                <ul className="p-2" style={{ backgroundColor: PRIMARY_TEAL }}> {/* Primary Teal for nested list */}
-                                    {serviceSubmenu.map((item) => (
-                                        <li key={item.path}>
-                                            <Link className={linkClasses} style={{'--tw-text-opacity': '1'}} to={item.path} onMouseEnter={(e) => e.currentTarget.style.color = ORANGE_ACCENT_HEX} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>{item.name}</Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </li>
+        <section className={`py-16 shadow-2xl p-6 md:p-10`} style={{ backgroundColor: DARK_NAVY }}>
+            <div className="max-w-7xl mx-auto">
+                
+                {/* Header and Core Narrative */}
+                <div className="text-center mb-16">
+                    <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
+                        Our <span style={{ color: ORANGE_ACCENT_HEX }}>Commitment</span> to Industry
+                    </h2>
+                    <div className="max-w-3xl mx-auto text-left">
+                        {/* Narrative Paragraph 1 */}
+                        <p className={`text-lg ${BODY_TEXT} leading-relaxed mb-4 border-l-4 pl-4`} style={{ borderColor: ORANGE_ACCENT_HEX }}>
+                            <span className={`font-semibold ${ACCENT_TEXT_CLASS}`}>Quality Enterprise</span> is established upon a foundation of **decades of technical leadership** and industrial expertise. Our founding partners, leveraging over **90 years of combined experience** with top-tier organizations like Unilever Bangladesh, identified a crucial need for a dedicated, solution-driven supplier in the market.
+                        </p>
+                        {/* Narrative Paragraph 2 */}
+                        <p className={`text-lg ${BODY_TEXT} leading-relaxed mb-4 border-l-4 pl-4`} style={{ borderColor: ORANGE_ACCENT_HEX }}>
+                            We operate as more than just a vendor; we are an **engineering partner** specializing in the precise sourcing and supply of high-performance components—from critical sealing solutions (gaskets, O-rings) to robust flow control and material handling equipment (valves, conveyor belts).
+                        </p>
+                        {/* Narrative Paragraph 3 */}
+                        <p className={`text-lg ${BODY_TEXT} leading-relaxed`}>
+                            Our dual focus on premium **product integrity** and **expert technical service** ensures that every solution we provide contributes directly to minimizing downtime, optimizing operational efficiency, and securing regulatory compliance for your facility.
+                        </p>
+                    </div>
+                </div>
 
-                            {/* Nested Submenu for Products (Small Screens) */}
-                            <li tabIndex={0}>
-                                <a className={`${linkClasses} justify-between`} style={accentStyle}>
-                                    Products
-                                    <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
-                                </a>
-                                <ul className="p-2" style={{ backgroundColor: PRIMARY_TEAL }}> {/* Primary Teal for nested list */}
-                                    {productSubmenu.map((item) => (
-                                        <li key={item.path}>
-                                            <Link className={linkClasses} style={{'--tw-text-opacity': '1'}} to={item.path} onMouseEnter={(e) => e.currentTarget.style.color = ORANGE_ACCENT_HEX} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>{item.name}</Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </li>
-                            
-                            <li><Link className={linkClasses} to={"/about"}>About</Link></li>
-                            <li><Link className={linkClasses} to={"/contact"}>Contact</Link></li>
-                        </ul>
+                {/* Core Principles Section */}
+                <h3 className="text-3xl font-bold text-white text-center mb-10">
+                    Our Core Principles
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                    
+                    {/* Mission Card */}
+                    <div className={`p-8 rounded-xl border border-gray-700 transition-all duration-300 shadow-xl hover:border-white/50`} style={{ backgroundColor: PRIMARY_TEAL }}>
+                        <MissionIcon />
+                        <h4 className={`text-2xl font-bold mt-4 mb-3`} style={{ color: ORANGE_ACCENT_HEX }}>
+                            Mission
+                        </h4>
+                        <p className={`${BODY_TEXT} leading-relaxed`}>
+                            To empower industries by providing **reliable, high-grade products** and unparalleled engineering solutions that drastically reduce operational downtime and enhance process safety and performance.
+                        </p>
                     </div>
 
-                    {/* Brand Logo */}
-                    <a href="/"><img className='w-32 h-24' src="logo.png" alt="Brand Logo" /></a> 
-                </div>
-
-                {/* Navbar Links for Larger Screens */}
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
-                        <li><Link className={linkClasses} to={"/"} onMouseEnter={(e) => e.currentTarget.style.color = ORANGE_ACCENT_HEX} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>Home</Link></li>
-                        
-                        {/* Desktop Hover Submenu for Services */}
-                        <li tabIndex={0} className="relative group">
-                            <a className={`${linkClasses} pr-1`} style={accentStyle}> 
-                                <span>Services</span> 
-                                <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
-                            </a>
-                            <ul 
-                                className="absolute hidden group-hover:block p-2 shadow-xl rounded-box top-full left-0 w-80"
-                                style={{ backgroundColor: DARK_NAVY }}
-                            > 
-                                {serviceSubmenu.map((item) => (
-                                    <li key={item.path}>
-                                        <Link className={linkClasses} style={{'--tw-text-opacity': '1'}} to={item.path} onMouseEnter={(e) => e.currentTarget.style.color = ORANGE_ACCENT_HEX} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>{item.name}</Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </li>
-
-                        {/* Desktop Hover Submenu for Products */}
-                        <li tabIndex={0} className="relative group">
-                            <a className={`${linkClasses} pr-1`} style={accentStyle}> 
-                                <span>Products</span> 
-                                <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
-                            </a>
-                            <ul 
-                                className="absolute hidden group-hover:block p-2 shadow-xl rounded-box top-full left-0 w-80"
-                                style={{ backgroundColor: DARK_NAVY }}
-                            > 
-                                {productSubmenu.map((item) => (
-                                    <li key={item.path}>
-                                        <Link className={linkClasses} style={{'--tw-text-opacity': '1'}} to={item.path} onMouseEnter={(e) => e.currentTarget.style.color = ORANGE_ACCENT_HEX} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>{item.name}</Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </li>
-                        
-                        <li><Link className={linkClasses} to={"/about"} onMouseEnter={(e) => e.currentTarget.style.color = ORANGE_ACCENT_HEX} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>About</Link></li>
-                        <li><Link className={linkClasses} to={"/contact"} onMouseEnter={(e) => e.currentTarget.style.color = ORANGE_ACCENT_HEX} onMouseLeave={(e) => e.currentTarget.style.color = 'white'}>Contact</Link></li>
-                    </ul>
-                </div>
-
-                {/* CTA Button - Orange Accent Background, Dark Navy Text */}
-                <div className="navbar-end gap-4">
-                    <a 
-                        href="#quote" 
-                        className="px-6 py-2 text-sm font-bold rounded-lg shadow-md hover:scale-105 transition duration-300"
-                        style={{ backgroundColor: ORANGE_ACCENT_HEX, color: DARK_NAVY }}
-                    > 
-                        Get A Quote
-                    </a>
+                    {/* Vision Card */}
+                    <div className={`p-8 rounded-xl border border-gray-700 transition-all duration-300 shadow-xl hover:border-white/50`} style={{ backgroundColor: PRIMARY_TEAL }}>
+                        <VisionIcon />
+                        <h4 className={`text-2xl font-bold mt-4 mb-3`} style={{ color: ORANGE_ACCENT_HEX }}>
+                            Vision
+                        </h4>
+                        <p className={`${BODY_TEXT} leading-relaxed`}>
+                            To be recognized as the **nation's leading technical partner** for industrial supply and services, renowned for our commitment to quality, responsiveness, and consistent technical excellence.
+                        </p>
+                    </div>
+                    
+                    {/* Core Values Card */}
+                    <div className={`p-8 rounded-xl border border-gray-700 transition-all duration-300 shadow-xl hover:border-white/50`} style={{ backgroundColor: PRIMARY_TEAL }}>
+                        <ValuesIcon />
+                        <h4 className={`text-2xl font-bold mt-4 mb-3`} style={{ color: ORANGE_ACCENT_HEX }}>
+                            Core Values
+                        </h4>
+                        <ul className={`${BODY_TEXT} leading-relaxed list-disc list-inside space-y-1`}>
+                            <li>Integrity in Sourcing</li>
+                            <li>Technical Precision</li>
+                            <li>Customer-First Approach</li>
+                            <li>Operational Reliability</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </>
+        </section>
     );
 };
 
-export default NavBar;
+export default About;

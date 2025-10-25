@@ -5,13 +5,13 @@ import About from "../Pages/About/About";
 import Home from "../Pages/Home/Home";
 import IndustrialEquipmentSupplyPage from "../Pages/Services/IndustrialEquipmentSupply";
 import OperationalExcellencePage from "../Pages/Services/OperationalExcellence";
-import CustomEngineeringSolutionsPage from "../Pages/Services/CustomEngineering";
 import CalibrationCompliancePage from "../Pages/Services/Compliance&Calibration";
 import ValvesFlowControlPage from "../Pages/Products/Valves&flow_control";
 import SealingSolutionsPage from "../Pages/Products/Sealing_Solutions";
 import ConveyorBeltsPage from "../Pages/Products/CoveyorBeltsPage";
 import SparePartsPage from "../Pages/Products/SpareParts&Accessories";
 import PlasticRubberPage from "../Pages/Products/Plastic&RubberEngineering";
+import CustomEngineeringSolutionsPage from "../Pages/Services/CustomEngineering";
 
  export const router = createBrowserRouter([
     {
@@ -39,7 +39,7 @@ import PlasticRubberPage from "../Pages/Products/Plastic&RubberEngineering";
             element: <OperationalExcellencePage></OperationalExcellencePage>
           },
           {
-            path: "/services/MEP_Works_&_engineering_solutions",
+            path: "/services/MEP_Works_&_Engineering_Solutions",
             element: <CustomEngineeringSolutionsPage></CustomEngineeringSolutionsPage>
           },
           {

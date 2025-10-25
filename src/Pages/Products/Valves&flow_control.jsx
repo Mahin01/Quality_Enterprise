@@ -124,7 +124,7 @@ const ValvesFlowControlPage = () => (
             <div className={`text-center mt-16 p-10 rounded-xl shadow-2xl`} style={{ backgroundColor: PRIMARY_TEAL }}>
                 <h3 className={`text-3xl font-bold mb-4 ${ACCENT_ORANGE_CLASS}`}>Need Reliable Flow Control or Custom Sourcing?</h3>
                 <p className="text-lg text-gray-300 mb-6">Contact our engineering team today to find the precise valve solution for your critical lines.</p>
-                <a href="#contact" className={`transition duration-300 hover:scale-[1.02] hover:shadow-lg text-lg font-semibold py-3 px-8 rounded-xl inline-flex items-center justify-center`} style={{ backgroundColor: ACCENT_BUTTON_COLOR, color: DARK_NAVY }}>
+                <a href="/contact" className={`transition duration-300 hover:scale-[1.02] hover:shadow-lg text-lg font-semibold py-3 px-8 rounded-xl inline-flex items-center justify-center`} style={{ backgroundColor: ACCENT_BUTTON_COLOR, color: DARK_NAVY }}>
                     Get a Quote on Valves
                     <ChevronRightIcon className="ml-2 w-5 h-5 text-gray-900" />
                 </a>

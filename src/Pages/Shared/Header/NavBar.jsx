@@ -9,7 +9,7 @@ const NavBar = () => {
     const serviceSubmenu = [
         { name: 'Industrial Equipment Supply', path: '/services/industrial_equipment_Supply' },
         { name: 'Operational Excellence & Efficiency', path: '/services/operational_excellence_service' },
-        { name: 'MEP Works & Engineering Solutions', path: '/services/MEP_Works_&_engineering_solutions' },
+        { name: 'MEP Works & Engineering Solutions', path: '/services/MEP_Works_&_Engineering_Solutions' },
         { name: 'Calibration & Compliance Services', path: '/services/calibration&compliance' },
     ];
     

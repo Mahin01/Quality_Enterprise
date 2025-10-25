@@ -82,10 +82,12 @@ const IndustrialEquipmentSupplyPage = () => (
                 We provide engineering-driven components and tailored supply solutions, ensuring quality, technical fit, and minimal downtime across your facility.
             </p>
             {/* CTA Button */}
-            <button className={`mt-8 transition duration-300 hover:scale-[1.02] hover:shadow-lg text-lg font-semibold py-3 px-8 rounded-xl flex items-center justify-center mx-auto`} style={{ backgroundColor: ORANGE_ACCENT_HEX, color: DARK_NAVY }}>
-                Get a Quote Now
+            <a href='/contact'>
+              <button className={`mt-8 transition duration-300 hover:scale-[1.02] hover:shadow-lg text-lg font-semibold py-3 px-8 rounded-xl flex items-center justify-center mx-auto`} style={{ backgroundColor: ORANGE_ACCENT_HEX, color: DARK_NAVY }}>
+                Contact Now
                 <ChevronRightIcon className="ml-2 w-5 h-5" />
-            </button>
+              </button>
+            </a>
         </div>
     </div>
 

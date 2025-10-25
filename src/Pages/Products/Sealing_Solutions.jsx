@@ -116,7 +116,7 @@ const SealingSolutionsPage = () => (
             <div className={`text-center mt-16 p-10 rounded-xl shadow-2xl`} style={{ backgroundColor: PRIMARY_TEAL }}>
                 <h3 className={`text-3xl font-bold mb-4 ${ACCENT_ORANGE_CLASS}`}>Need Immediate Sealing Solutions or Custom Gaskets?</h3>
                 <p className="text-lg text-gray-300 mb-6">Ensure system integrity and compliance with our range of high-performance gaskets, O-rings, and seals. Fast delivery guaranteed.</p>
-                <a href="#contact" className={`transition duration-300 hover:scale-[1.02] hover:shadow-lg text-lg font-semibold py-3 px-8 rounded-xl inline-flex items-center justify-center`} style={{ backgroundColor: ACCENT_BUTTON_COLOR, color: DARK_NAVY }}>
+                <a href="/contact" className={`transition duration-300 hover:scale-[1.02] hover:shadow-lg text-lg font-semibold py-3 px-8 rounded-xl inline-flex items-center justify-center`} style={{ backgroundColor: ACCENT_BUTTON_COLOR, color: DARK_NAVY }}>
                     Inquire About Sealing Products
                     <ChevronRightIcon className="ml-2 w-5 h-5 text-gray-900" />
                 </a>

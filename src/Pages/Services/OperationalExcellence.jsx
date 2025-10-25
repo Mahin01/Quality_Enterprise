@@ -111,10 +111,13 @@ const OperationalExcellencePage = () => {
                         Implement proven methodologies like **Lean Six Sigma** and **WCM** to eliminate waste, optimize processes, and ensure long-term operational sustainability.
                     </p>
                     {/* CTA Button - Matching the IndustrialSupplyPage button style */}
+                    
+                    <a href='/contact'>
                     <button className={`mt-8 transition duration-300 hover:scale-[1.02] hover:shadow-lg text-lg font-semibold py-3 px-8 rounded-xl flex items-center justify-center mx-auto`} style={{ backgroundColor: ORANGE_ACCENT_HEX, color: DARK_NAVY }}>
                         Start Your Assessment
                         <ChevronRightIcon className="ml-2 w-5 h-5 text-gray-900" />
                     </button>
+                    </a>
                 </div>
             </div>
 
