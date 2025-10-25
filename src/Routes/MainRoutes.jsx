@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
 import Contact from "../Pages/Contact/Contact";
-import Products from "../Pages/Products/Products";
 import About from "../Pages/About/About";
 import Home from "../Pages/Home/Home";
 import IndustrialEquipmentSupplyPage from "../Pages/Services/IndustrialEquipmentSupply";
 import OperationalExcellencePage from "../Pages/Services/OperationalExcellence";
 import CustomEngineeringSolutionsPage from "../Pages/Services/CustomEngineering";
 import CalibrationCompliancePage from "../Pages/Services/Compliance&Calibration";
+import ValvesFlowControlPage from "../Pages/Products/Valves&flow_control";
 
  export const router = createBrowserRouter([
     {
@@ -43,8 +43,8 @@ import CalibrationCompliancePage from "../Pages/Services/Compliance&Calibration"
             element: <CalibrationCompliancePage></CalibrationCompliancePage>
           },
           {
-            path: "/products",
-            element: <Products></Products>
+            path: "/products/Valves&Flow_Coontrol_Equipments",
+            element: <ValvesFlowControlPage></ValvesFlowControlPage>
           },
         ]
     }
