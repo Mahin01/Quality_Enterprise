@@ -10,9 +10,17 @@ const NavBar = () => {
         { name: 'MEP Works & Engineering Solutions', path: '/services/MEP_Works&Engineering_Solutions' },
         { name: 'Calibration & Compliance Services', path: '/services/Calibration&Compliance_Services' },
     ];
+
+    // Define the submenu items for Products based on the catalog (Pages 04-08)
+    const productSubmenu = [
+        { name: 'Valves & Flow Control Equipment', path: '/products/valves-flow-control' },
+        { name: 'Sealing Solutions – Gaskets, O-Rings & More', path: '/products/sealing-solutions' },
+        { name: 'Conveyor Belts & Accessories', path: '/products/conveyor-belts' },
+        { name: 'Spare Parts & Accessories', path: '/products/spare-parts' },
+        { name: 'Plastic & Rubber Engineering Materials', path: '/products/engineering-materials' },
+    ];
     
     // Define the reusable link classes
-    // Note: Tailwind amber-400 and gray-900 provide the high contrast you established.
     const linkClasses = 'hover:bg-transparent hover:text-amber-400 text-white'; // Added text-white for initial state clarity
 
     return (
@@ -33,7 +41,7 @@ const NavBar = () => {
                         <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-gray-800 text-white rounded-box w-52 z-20"> 
                             <li><Link className={linkClasses} to={"/"}>Home</Link></li>
                             
-                            {/* Nested Submenu for Small Screens */}
+                            {/* Nested Submenu for Services (Small Screens) */}
                             <li tabIndex={0}>
                                 <a className={`${linkClasses} justify-between text-amber-400`}>
                                     Services
@@ -48,14 +56,27 @@ const NavBar = () => {
                                 </ul>
                             </li>
                             
-                            <li><Link className={linkClasses} to={"/products"}>Products</Link></li>
+                            {/* Nested Submenu for Products (Small Screens) */}
+                            <li tabIndex={0}>
+                                <a className={`${linkClasses} justify-between text-amber-400`}>
+                                    Products
+                                    <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
+                                </a>
+                                <ul className="p-2 bg-gray-700"> {/* Slightly lighter gray for nested list */}
+                                    {productSubmenu.map((item) => (
+                                        <li key={item.path}>
+                                            <Link className={linkClasses} to={item.path}>{item.name}</Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </li>
+
                             <li><Link className={linkClasses} to={"/about"}>About</Link></li>
                             <li><Link className={linkClasses} to={"/contact"}>Contact</Link></li>
                         </ul>
                     </div>
 
                     {/* Brand Logo */}
-                    {/* Note: I added 'fixed z-50' to the main div to keep the navbar sticky above all content. */}
                     <a href="/"><img className='w-32 h-24' src="logo.png" alt="Brand Logo" /></a> 
                 </div>
 
@@ -64,7 +85,7 @@ const NavBar = () => {
                     <ul className="menu menu-horizontal px-1">
                         <li><Link className={linkClasses} to={"/"}>Home</Link></li>
                         
-                        {/* Desktop Hover Submenu */}
+                        {/* Desktop Hover Submenu for Services */}
                         <li tabIndex={0} className="relative group">
                             <a className={`${linkClasses} pr-1 text-amber-400`}> 
                                 <span>Services</span> 
@@ -72,7 +93,7 @@ const NavBar = () => {
                             </a>
                             
                             {/* Dropdown Content - Gray 800 Background */}
-                            <ul className="absolute hidden group-hover:block p-2 bg-gray-800 z-20 shadow-xl rounded-box top-full left-0 w-52"> 
+                            <ul className="absolute hidden group-hover:block p-2 bg-gray-800 z-20 shadow-xl rounded-box top-full left-0 w-80"> 
                                 {serviceSubmenu.map((item) => (
                                     <li key={item.path}>
                                         <Link className={linkClasses} to={item.path}>{item.name}</Link>
@@ -80,8 +101,24 @@ const NavBar = () => {
                                 ))}
                             </ul>
                         </li>
+
+                        {/* Desktop Hover Submenu for Products */}
+                        <li tabIndex={0} className="relative group">
+                            <a className={`${linkClasses} pr-1 text-amber-400`}> 
+                                <span>Products</span> 
+                                <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+                            </a>
+                            
+                            {/* Dropdown Content - Gray 800 Background */}
+                            <ul className="absolute hidden group-hover:block p-2 bg-gray-800 z-20 shadow-xl rounded-box top-full left-0 w-80"> 
+                                {productSubmenu.map((item) => (
+                                    <li key={item.path}>
+                                        <Link className={linkClasses} to={item.path}>{item.name}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </li>
                         
-                        <li><Link className={linkClasses} to={"/products"}>Products</Link></li>
                         <li><Link className={linkClasses} to={"/about"}>About</Link></li>
                         <li><Link className={linkClasses} to={"/contact"}>Contact</Link></li>
                     </ul>
