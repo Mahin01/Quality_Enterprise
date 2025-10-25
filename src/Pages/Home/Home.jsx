@@ -1,68 +1,68 @@
 import React, { useState } from 'react';
 
-// Define the core color palette based on the pictures
-const PRIMARY_TEAL = '#1A364F'; // Primary Block/Accent Color (Dark Blue/Teal from images)
-const DARK_NAVY = '#0F2133'; // New darkest background color (Replaces gray-950)
+// --- Color and Style Constants (Copied from CalibrationCompliancePage for consistency) ---
+const PRIMARY_TEAL = '#1A364F'; // Primary Block/Accent Color
+const DARK_NAVY = '#0F2133'; // New darkest background color
+const ORANGE_ACCENT_HEX = '#FF8C00'; // Primary Orange Accent
+const ACCENT_ORANGE_CLASS = 'text-orange-400';
 const PAGE_BG_COLOR = `bg-[${DARK_NAVY}]`;
 
-// Custom Colors for Form Elements to avoid Gray
+// Custom Colors for Form Elements to match the theme
 const INPUT_BG_COLOR = '#152A3F';
 const INPUT_BORDER_COLOR = '#367999';
 
-// Mock Data based on the uploaded images (IMG_0028 to IMG_0034)
+// Mock Data (Unchanged)
 const servicesData = [
-  {
-    title: "1. Industrial Equipment Supply",
-    details: [
-      "Gate Valves, Ball Valves, Strainers",
-      "Gaskets, O-Rings, Sealing Materials",
-      "Conveyor Belts (PU, PVC, Modular, Timing)",
-      "Bearings, Couplings, Industrial Hoses",
-      "All sourced from trusted global and local manufacturers"
-    ],
-    image: "https://placehold.co/400x300/264653/ffffff?text=Industrial+Supply"
-  },
-  {
-    title: "2. Engineering Solutions",
-    details: [
-      "System diagnosis & failure analysis",
-      "Equipment retrofitting and replacement",
-      "Custom component sourcing based on specification",
-      "Process improvement consultation (based on field experience)"
-    ],
-    image: "https://placehold.co/400x300/E76F51/ffffff?text=Engineering+Solutions"
-  },
-  {
-    title: "4. Maintenance, Custom Fabrication & Modifications",
-    details: [
-      "Custom cut gaskets or belts",
-      "Adaptations for process-specific challenges",
-      "Vendor coordination for special fabrication jobs",
-      "On-site troubleshooting & inspection",
-      "Emergency supply and rapid response for critical breakdowns"
-    ],
-    image: "https://placehold.co/400x300/2A9D8F/ffffff?text=Custom+Fabrication"
-  },
-  {
-    title: "5. Calibration & Compliance Services",
-    details: [
-      "ISO/IEC 17025 accredited calibration laboratory (NABL & BAB)",
-      "On-site & in-lab calibration for industrial instruments",
-      "Expertise in pharmaceuticals, FMCG, oil & gas, textiles, textiles, power, and healthcare sectors"
-    ],
-    image: "https://placehold.co/400x300/F4A261/ffffff?text=Compliance+Services"
-  },
+    {
+        title: "1. Industrial Equipment Supply",
+        details: [
+            "Gate Valves, Ball Valves, Strainers",
+            "Gaskets, O-Rings, Sealing Materials",
+            "Conveyor Belts (PU, PVC, Modular, Timing)",
+            "Bearings, Couplings, Industrial Hoses",
+            "All sourced from trusted global and local manufacturers"
+        ],
+        image: "https://placehold.co/400x300/264653/ffffff?text=Industrial+Supply"
+    },
+    {
+        title: "2. Engineering Solutions",
+        details: [
+            "System diagnosis & failure analysis",
+            "Equipment retrofitting and replacement",
+            "Custom component sourcing based on specification",
+            "Process improvement consultation (based on field experience)"
+        ],
+        image: "https://placehold.co/400x300/E76F51/ffffff?text=Engineering+Solutions"
+    },
+    {
+        title: "4. Maintenance, Custom Fabrication & Modifications",
+        details: [
+            "Custom cut gaskets or belts",
+            "Adaptations for process-specific challenges",
+            "Vendor coordination for special fabrication jobs",
+            "On-site troubleshooting & inspection",
+            "Emergency supply and rapid response for critical breakdowns"
+        ],
+        image: "https://placehold.co/400x300/2A9D8F/ffffff?text=Custom+Fabrication"
+    },
+    {
+        title: "5. Calibration & Compliance Services",
+        details: [
+            "ISO/IEC 17025 accredited calibration laboratory (NABL & BAB)",
+            "On-site & in-lab calibration for industrial instruments",
+            "Expertise in pharmaceuticals, FMCG, oil & gas, textiles, textiles, power, and healthcare sectors"
+        ],
+        image: "https://placehold.co/400x300/F4A261/ffffff?text=Compliance+Services"
+    },
 ];
 
 const productCategories = [
-  { name: "Valves & Flow Control", description: "Reliable isolation and throttling control equipment for diverse industry needs." },
-  { name: "Sealing Solutions", description: "High-performance gaskets, O-rings, and seals that withstand pressure and chemicals." },
-  { name: "Conveyor Belts & Accessories", description: "High-speed packaging and food-grade conveyor solutions with on-site support." },
-  { name: "Plastic & Rubber Materials", description: "Molded rubber, plastic pucks, and conveyor chain links for smooth conveying." },
+    { name: "Valves & Flow Control", description: "Reliable isolation and throttling control equipment for diverse industry needs." },
+    { name: "Sealing Solutions", description: "High-performance gaskets, O-rings, and seals that withstand pressure and chemicals." },
+    { name: "Conveyor Belts & Accessories", description: "High-speed packaging and food-grade conveyor solutions with on-site support." },
+    { name: "Plastic & Rubber Materials", description: "Molded rubber, plastic pucks, and conveyor chain links for smooth conveying." },
 ];
 
-// Mock partner data updated to use custom rendering for the first two items, 
-// and a failing image URL (transparent GIF) for the rest to trigger the initials fallback.
 const partnersData = [
     { name: "Unilever", type: "custom-svg" }, 
     { name: "BCIC", type: "custom-svg" },
@@ -73,115 +73,118 @@ const partnersData = [
 ];
 
 
-// Hero Section Component (Using Deep Teal/Blue Accent)
+// Hero Section Component
 const Hero = () => (
-  // Increased top padding to push content below the fixed Navbar
-  <section className={`bg-[${PRIMARY_TEAL}] text-white pt-32 pb-24 rounded-b-3xl shadow-2xl`}> 
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center">
-        <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 leading-tight">
-          <span className="text-orange-400">Engineering</span>-Driven Supply & Service
-        </h1>
-        <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-          We provide tailored engineering solutions that solve real-world problems in industrial settings, ensuring quality and reliability for continuous operations.
-        </p>
-        <a href="#quote" className="inline-block px-10 py-4 text-lg font-bold text-gray-900 bg-orange-400 rounded-xl shadow-2xl hover:bg-orange-500 transform hover:scale-105 transition duration-300">
-          Request a Quote Today
-        </a>
-      </div>
-    </div>
-  </section>
+    // Uses PRIMARY_TEAL for background and ACCENT_ORANGE_CLASS for text
+    <section className={`bg-[${PRIMARY_TEAL}] text-white pt-32 pb-24 rounded-b-3xl shadow-2xl`}> 
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+                <h1 className="text-4xl sm:text-6xl font-extrabold mb-4 leading-tight">
+                    <span className={`${ACCENT_ORANGE_CLASS}`}>Engineering</span>-Driven Supply & Service
+                </h1>
+                <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                    We provide tailored engineering solutions that solve real-world problems in industrial settings, ensuring quality and reliability for continuous operations.
+                </p>
+                {/* Button uses ORANGE_ACCENT_HEX */}
+                <a href="#quote" className={`inline-block px-10 py-4 text-lg font-bold text-gray-900 rounded-xl shadow-2xl transform hover:scale-105 transition duration-300`} style={{ backgroundColor: ORANGE_ACCENT_HEX }}>
+                    Request a Quote Today
+                </a>
+            </div>
+        </div>
+    </section>
 );
 
 // Service Block Component (Alternating Layout and Color)
 const ServiceBlock = ({ data, index }) => {
-  const isReverse = index % 2 !== 0; // Alternate the text/image layout
+    const isReverse = index % 2 !== 0; // Alternate the text/image layout
 
-  // Alternate between Orange (for even index) and Deep Teal/Blue (for odd index)
-  const isOrangeBg = index % 2 === 0; 
-  const textBg = isOrangeBg ? 'bg-orange-600' : `bg-[${PRIMARY_TEAL}]`;
-  const textColor = 'text-white';
-  const titleColor = isOrangeBg ? 'text-gray-900' : 'text-orange-400';
-  const bulletColor = isOrangeBg ? 'text-gray-900' : 'text-orange-500';
+    // Alternate between Orange (for even index) and Deep Teal/Blue (for odd index)
+    const isOrangeBg = index % 2 === 0; 
+    // Use the primary teal and the ORANGE_ACCENT_HEX for the alternating block backgrounds
+    const textBg = isOrangeBg ? `bg-[${ORANGE_ACCENT_HEX}]` : `bg-[${PRIMARY_TEAL}]`;
+    const textColor = isOrangeBg ? 'text-gray-900' : 'text-white'; // Dark text on orange, light text on teal
+    const titleColor = isOrangeBg ? 'text-gray-900' : `${ACCENT_ORANGE_CLASS}`; // Use the primary orange class on the dark background
+    const bulletColor = isOrangeBg ? 'text-gray-900' : `text-orange-500`; // Orange bullet on dark background, dark bullet on orange background
 
-  return (
-    <div className={`flex flex-col ${isReverse ? 'md:flex-row-reverse' : 'md:flex-row'} min-h-[400px] shadow-2xl rounded-xl overflow-hidden my-8`}>
-      {/* Image Column */}
-      <div className="md:w-1/2 flex-shrink-0">
-        <img
-          src={data.image}
-          alt={data.title}
-          className="w-full h-full object-cover"
-          // Fallback if the placeholder link breaks (though it shouldn't)
-          onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/400x300/555/fff?text=Image+Placeholder"; }}
-        />
-      </div>
+    return (
+        <div className={`flex flex-col ${isReverse ? 'md:flex-row-reverse' : 'md:flex-row'} min-h-[400px] shadow-2xl rounded-xl overflow-hidden my-8`}>
+            {/* Image Column */}
+            <div className="md:w-1/2 flex-shrink-0">
+                <img
+                    src={data.image}
+                    alt={data.title}
+                    className="w-full h-full object-cover"
+                    onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/400x300/555/fff?text=Image+Placeholder"; }}
+                />
+            </div>
 
-      {/* Content Column */}
-      <div className={`md:w-1/2 p-8 sm:p-12 flex flex-col justify-center ${textBg} ${textColor}`}>
-        <h3 className={`text-2xl sm:text-3xl font-bold mb-4 ${titleColor}`}>
-          {data.title}
-        </h3>
-        <ul className="list-none space-y-3">
-          {data.details.map((detail, i) => (
-            <li key={i} className="flex items-start">
-              <span className={`text-xl font-extrabold mr-3 ${bulletColor}`}>&bull;</span>
-              <p className="text-lg leading-relaxed">{detail}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
+            {/* Content Column */}
+            <div className={`md:w-1/2 p-8 sm:p-12 flex flex-col justify-center ${textBg} ${textColor}`}>
+                <h3 className={`text-2xl sm:text-3xl font-bold mb-4 ${titleColor}`}>
+                    {data.title}
+                </h3>
+                <ul className="list-none space-y-3">
+                    {data.details.map((detail, i) => (
+                        <li key={i} className="flex items-start">
+                            <span className={`text-xl font-extrabold mr-3 ${bulletColor}`}>&bull;</span>
+                            <p className="text-lg leading-relaxed">{detail}</p>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    );
 };
 
 // Services Section Container
 const ServicesSection = () => (
-  <section id="services" className={`py-16 ${PAGE_BG_COLOR}`}>
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="text-4xl font-extrabold text-center mb-4 text-orange-400">Our Services</h2>
-      <p className="text-center text-xl text-gray-400 mb-12">What We Offer</p>
-      {servicesData.map((service, index) => (
-        <ServiceBlock key={index} data={service} index={index} />
-      ))}
-    </div>
-  </section>
+    // Uses PAGE_BG_COLOR (DARK_NAVY) for the background
+    <section id="services" className={`py-16 ${PAGE_BG_COLOR}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className={`text-4xl font-extrabold text-center mb-4 ${ACCENT_ORANGE_CLASS}`}>Our Services</h2>
+            <p className="text-center text-xl text-gray-400 mb-12">What We Offer</p>
+            {servicesData.map((service, index) => (
+                <ServiceBlock key={index} data={service} index={index} />
+            ))}
+        </div>
+    </section>
 );
 
 // Product Card Component
 const ProductCard = ({ name, description }) => (
-  <div className={`bg-[${PRIMARY_TEAL}] p-8 rounded-xl shadow-xl hover:shadow-orange-500/50 transition duration-300 border-t-4 border-orange-600 transform hover:-translate-y-1`}>
-    <h4 className="text-2xl font-bold text-orange-400 mb-3">{name}</h4>
-    <p className="text-gray-300">{description}</p>
-  </div>
+    // Uses PRIMARY_TEAL for card background and ACCENT_ORANGE_CLASS for title
+    <div className={`bg-[${PRIMARY_TEAL}] p-8 rounded-xl shadow-xl hover:shadow-orange-500/50 transition duration-300 border-t-4 border-orange-600 transform hover:-translate-y-1`}>
+        <h4 className={`text-2xl font-bold mb-3 ${ACCENT_ORANGE_CLASS}`}>{name}</h4>
+        <p className="text-gray-300">{description}</p>
+    </div>
 );
 
-// Product Categories Section Container (Using Deep Teal/Blue Accent)
+// Product Categories Section Container
 const ProductsSection = () => (
-  <section id="products" className={`py-20 bg-[${PRIMARY_TEAL}]`}>
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="text-4xl font-extrabold text-center mb-4 text-orange-400">Product Categories</h2>
-      <p className="text-center text-xl text-gray-300 mb-12">Essential Components for Continuous Operations</p>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {productCategories.map((product, index) => (
-          <ProductCard key={index} {...product} />
-        ))}
-      </div>
-      
-      <div className="text-center mt-12">
-        <a href="#quote" className="inline-block px-8 py-3 text-lg font-semibold text-gray-900 bg-white rounded-lg hover:bg-gray-200 transition duration-300">
-          Request A Custom Quote
-        </a>
-      </div>
-    </div>
-  </section>
+    // Uses PRIMARY_TEAL for the section background
+    <section id="products" className={`py-20 bg-[${PRIMARY_TEAL}]`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className={`text-4xl font-extrabold text-center mb-4 ${ACCENT_ORANGE_CLASS}`}>Product Categories</h2>
+            <p className="text-center text-xl text-gray-300 mb-12">Essential Components for Continuous Operations</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {productCategories.map((product, index) => (
+                    <ProductCard key={index} {...product} />
+                ))}
+            </div>
+            
+            <div className="text-center mt-12">
+                <a href="#quote" className="inline-block px-8 py-3 text-lg font-semibold text-gray-900 bg-white rounded-lg hover:bg-gray-200 transition duration-300">
+                    Request A Custom Quote
+                </a>
+            </div>
+        </div>
+    </section>
 );
 
 // Client/Partner Section Component
 const ClientSection = () => {
 
-    // Helper function to render custom SVG/Text approximations based on the uploaded image
     const renderPartnerContent = (partner) => {
         if (partner.type === 'custom-svg') {
             if (partner.name === 'Unilever') {
@@ -218,7 +221,6 @@ const ClientSection = () => {
                 src={partner.imageUrl} 
                 alt={`${partner.name} Logo`}
                 className="w-full h-full object-cover p-2"
-                // On error, display initials fallback
                 onError={(e) => { 
                     const div = e.target.closest('div');
                     e.target.onerror = null; 
@@ -233,15 +235,16 @@ const ClientSection = () => {
     };
 
     return (
+        // Uses PAGE_BG_COLOR (DARK_NAVY) for the background
         <section id="clients" className={`py-20 ${PAGE_BG_COLOR}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 className="text-4xl font-extrabold text-orange-400 mb-2">Client List</h2>
-                <p className="text-xl text-orange-400 mb-10">Trusted by Leading Industries</p>
+                <h2 className={`text-4xl font-extrabold mb-2 ${ACCENT_ORANGE_CLASS}`}>Client List</h2>
+                <p className={`text-xl mb-10 ${ACCENT_ORANGE_CLASS}`}>Trusted by Leading Industries</p>
 
                 {/* Industries Served List */}
                 <div className="max-w-4xl mx-auto mb-16">
                     <p className="text-lg text-gray-300 mb-6">
-                        Over the years, Quality Enterprise has built strong relationships with key players across the <span className="font-semibold text-orange-300">FMCG, chemical, packaging, and utilities sectors.</span> Our reputation is based on timely delivery, accurate solutions, and technical dependability.
+                        Over the years, Quality Enterprise has built strong relationships with key players across the <span className={`font-semibold text-orange-300`}>FMCG, chemical, packaging, and utilities sectors.</span> Our reputation is based on timely delivery, accurate solutions, and technical dependability.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4 text-center">
                         <span className="text-gray-200 border border-orange-500/50 px-3 py-1 rounded-full text-sm">FMCG & Consumer Goods</span>
@@ -252,15 +255,16 @@ const ClientSection = () => {
                     </div>
                 </div>
 
-                <h3 className="text-3xl font-extrabold text-orange-400 mb-8 border-b-2 border-orange-500 inline-block pb-1">Our Partners</h3>
+                <h3 className={`text-3xl font-extrabold mb-8 border-b-2 border-orange-500 inline-block pb-1 ${ACCENT_ORANGE_CLASS}`}>Our Partners</h3>
                 
-                {/* Partner Logos (Now in rounded square containers) */}
+                {/* Partner Logos */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-center">
                     {partnersData.map((partner) => (
                         <div 
                             key={partner.name} 
                             title={partner.name}
-                            className={`w-28 h-28 mx-auto flex items-center justify-center rounded-xl transition duration-300 shadow-xl border-4 border-orange-400 transform hover:scale-105 overflow-hidden ${partner.type !== 'custom-svg' ? 'bg-orange-600' : 'bg-white'}`}
+                            // Using ORANGE_ACCENT_HEX for the border
+                            className={`w-28 h-28 mx-auto flex items-center justify-center rounded-xl transition duration-300 shadow-xl border-4 border-orange-400 transform hover:scale-105 overflow-hidden ${partner.type !== 'custom-svg' ? `bg-[${ORANGE_ACCENT_HEX}]` : 'bg-white'}`}
                         >
                             {renderPartnerContent(partner)}
                         </div>
@@ -272,160 +276,168 @@ const ClientSection = () => {
 };
 
 
-// Quote Request Form Component (Using Deep Teal/Blue Accent)
+// Quote Request Form Component
 const QuoteRequestForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    service: '',
-    quantity: '',
-    description: '',
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [message, setMessage] = useState('');
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        service: '',
+        quantity: '',
+        description: '',
+    });
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [message, setMessage] = useState('');
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitted(true);
-
-    // --- Mock Submission Logic ---
-    // In a real application, you would send formData to a backend API 
-    console.log('Quote Request Submitted:', formData);
-    
-    // Simulate API delay
-    setTimeout(() => {
-      setMessage('Thank you! Your quote request has been submitted. We will contact you shortly.');
-    }, 1500);
-    // --- End Mock Submission Logic ---
-  };
-
-  if (isSubmitted && message) {
-    return (
-      <section id="quote" className={`py-20 ${PAGE_BG_COLOR}`}>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-[${INPUT_BG_COLOR}] p-10 rounded-xl shadow-2xl">
-          <h2 className="text-3xl font-extrabold text-orange-400 mb-4">Success!</h2>
-          <p className="text-xl text-white">{message}</p>
-        </div>
-      </section>
-    );
-  }
-
-  return (
-    <section id="quote" className={`py-20 ${PAGE_BG_COLOR}`}>
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsSubmitted(true);
         
-        <div className="text-center mb-10">
-          <h2 className="text-4xl font-extrabold text-orange-400 mb-4">Get a Quote</h2>
-          <p className="text-xl text-gray-400">Tell us about your project or component needs.</p>
-        </div>
+        console.log('Quote Request Submitted:', formData);
+        
+        setTimeout(() => {
+            setMessage('Thank you! Your quote request has been submitted. We will contact you shortly.');
+        }, 1500);
+    };
 
-        <form onSubmit={handleSubmit} className={`bg-[${PRIMARY_TEAL}] p-8 sm:p-12 rounded-xl shadow-2xl space-y-6`}>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
-                placeholder="John Doe"
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Work Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
-                placeholder="john.doe@company.com"
-              />
-            </div>
-          </div>
+    if (isSubmitted && message) {
+        return (
+            // Uses PAGE_BG_COLOR (DARK_NAVY) for the background
+            <section id="quote" className={`py-20 ${PAGE_BG_COLOR}`}>
+                {/* Uses INPUT_BG_COLOR for the success message box */}
+                <div className={`max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center p-10 rounded-xl shadow-2xl`} style={{ backgroundColor: INPUT_BG_COLOR }}>
+                    <h2 className={`text-3xl font-extrabold mb-4 ${ACCENT_ORANGE_CLASS}`}>Success!</h2>
+                    <p className="text-xl text-white">{message}</p>
+                </div>
+            </section>
+        );
+    }
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-2">Product/Service of Interest</label>
-              <select
-                id="service"
-                name="service"
-                value={formData.service}
-                onChange={handleChange}
-                required
-                className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white focus:ring-orange-500 focus:border-orange-500 transition duration-300 appearance-none`}
-              >
-                <option value="" disabled>Select a category</option>
-                <option value="Industrial Equipment Supply">Industrial Equipment Supply</option>
-                <option value="Engineering Solutions">Engineering Solutions</option>
-                <option value="Maintenance & Fabrication">Maintenance & Fabrication</option>
-                <option value="Calibration & Compliance">Calibration & Compliance</option>
-                <option value="Valves & Flow Control">Valves & Flow Control</option>
-                <option value="Sealing Solutions">Sealing Solutions</option>
-                <option value="Custom Project">Custom Project / Other</option>
-              </select>
-            </div>
-            <div>
-              <label htmlFor="quantity" className="block text-sm font-medium text-gray-300 mb-2">Quantity or Size (e.g., 100 units, 4" Gasket)</label>
-              <input
-                type="text"
-                id="quantity"
-                name="quantity"
-                value={formData.quantity}
-                onChange={handleChange}
-                className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
-                placeholder="Required Qty/Size"
-              />
-            </div>
-          </div>
-          
-          <div>
-            <label htmlFor="description" className="block text-sm font-medium text-gray-300 mb-2">Project Description / Detailed Requirements</label>
-            <textarea
-              id="description"
-              name="description"
-              rows="4"
-              value={formData.description}
-              onChange={handleChange}
-              required
-              className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
-              placeholder="Describe the application, material requirements, or specific challenges..."
-            ></textarea>
-          </div>
+    return (
+        // Uses PAGE_BG_COLOR (DARK_NAVY) for the background
+        <section id="quote" className={`py-20 ${PAGE_BG_COLOR}`}>
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div className="text-center mb-10">
+                    <h2 className={`text-4xl font-extrabold mb-4 ${ACCENT_ORANGE_CLASS}`}>Get a Quote</h2>
+                    <p className="text-xl text-gray-400">Tell us about your project or component needs.</p>
+                </div>
 
-          <button
-            type="submit"
-            className="w-full px-6 py-3 text-lg font-bold text-gray-900 bg-orange-400 rounded-xl shadow-lg hover:bg-orange-500 transform hover:scale-[1.01] transition duration-300"
-          >
-            Submit Quote Request
-          </button>
-        </form>
-      </div>
-    </section>
-  );
+                {/* Uses PRIMARY_TEAL for the form background */}
+                <form onSubmit={handleSubmit} className={`bg-[${PRIMARY_TEAL}] p-8 sm:p-12 rounded-xl shadow-2xl space-y-6`}>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                                // Form input styling using custom colors
+                                className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
+                                placeholder="John Doe"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Work Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                                // Form input styling using custom colors
+                                className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
+                                placeholder="john.doe@company.com"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-2">Product/Service of Interest</label>
+                            <select
+                                id="service"
+                                name="service"
+                                value={formData.service}
+                                onChange={handleChange}
+                                required
+                                // Form select styling using custom colors
+                                className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white focus:ring-orange-500 focus:border-orange-500 transition duration-300 appearance-none`}
+                            >
+                                <option value="" disabled>Select a category</option>
+                                <option value="Industrial Equipment Supply">Industrial Equipment Supply</option>
+                                <option value="Engineering Solutions">Engineering Solutions</option>
+                                <option value="Maintenance & Fabrication">Maintenance & Fabrication</option>
+                                <option value="Calibration & Compliance">Calibration & Compliance</option>
+                                <option value="Valves & Flow Control">Valves & Flow Control</option>
+                                <option value="Sealing Solutions">Sealing Solutions</option>
+                                <option value="Custom Project">Custom Project / Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label htmlFor="quantity" className="block text-sm font-medium text-gray-300 mb-2">Quantity or Size (e.g., 100 units, 4" Gasket)</label>
+                            <input
+                                type="text"
+                                id="quantity"
+                                name="quantity"
+                                value={formData.quantity}
+                                onChange={handleChange}
+                                // Form input styling using custom colors
+                                className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
+                                placeholder="Required Qty/Size"
+                            />
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label htmlFor="description" className="block text-sm font-medium text-gray-300 mb-2">Project Description / Detailed Requirements</label>
+                        <textarea
+                            id="description"
+                            name="description"
+                            rows="4"
+                            value={formData.description}
+                            onChange={handleChange}
+                            required
+                            // Form textarea styling using custom colors
+                            className={`w-full px-4 py-3 bg-[${INPUT_BG_COLOR}] border border-[${INPUT_BORDER_COLOR}] rounded-lg text-white placeholder-gray-400 focus:ring-orange-500 focus:border-orange-500 transition duration-300`}
+                            placeholder="Describe the application, material requirements, or specific challenges..."
+                        ></textarea>
+                    </div>
+
+                    <button
+                        type="submit"
+                        // Submit button uses ORANGE_ACCENT_HEX
+                        className={`w-full px-6 py-3 text-lg font-bold text-gray-900 rounded-xl shadow-lg hover:bg-orange-500 transform hover:scale-[1.01] transition duration-300`}
+                        style={{ backgroundColor: ORANGE_ACCENT_HEX }}
+                    >
+                        Submit Quote Request
+                    </button>
+                </form>
+            </div>
+        </section>
+    );
 };
 
 // Main App Component
 export default function Home() {
-  return (
-    <div className="min-h-screen bg-gray-900 font-sans">
-      <main>
-        <Hero />
-        <ServicesSection />
-        <ProductsSection />
-        <ClientSection />
-        <QuoteRequestForm /> 
-      </main>
-    </div>
-  );
+    return (
+        // Uses DARK_NAVY color from the compliance page
+        <div className={`min-h-screen font-sans`} style={{ backgroundColor: DARK_NAVY }}>
+            <main>
+                <Hero />
+                <ServicesSection />
+                <ProductsSection />
+                <ClientSection />
+                <QuoteRequestForm /> 
+            </main>
+        </div>
+    );
 }
